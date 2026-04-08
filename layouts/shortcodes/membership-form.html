@@ -93,12 +93,12 @@
         pinStatus.style.color = '#16a34a';
       } else {
         stateEl.value = '';
-        pinStatus.textContent = 'Pincode not found — please enter city and state manually';
+        pinStatus.textContent = 'Pincode not found';
         pinStatus.style.color = '#dc2626';
       }
     } catch {
       stateEl.value = '';
-      pinStatus.textContent = 'Could not look up pincode — please enter city and state manually';
+      pinStatus.textContent = 'Could not look up pincode';
       pinStatus.style.color = '#b45309';
     }
   }
