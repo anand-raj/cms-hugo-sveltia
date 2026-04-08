@@ -3,15 +3,47 @@
   <form id="membership-form" class="membership-form" novalidate>
 
     <div class="form-group">
-      <label for="mem-name">Full name</label>
+      <label for="mem-name">Full name <span class="req">*</span></label>
       <input id="mem-name" name="name" type="text" required
              autocomplete="name" placeholder="Jane Smith">
     </div>
 
     <div class="form-group">
-      <label for="mem-email">Email address</label>
+      <label for="mem-email">Email address <span class="req">*</span></label>
       <input id="mem-email" name="email" type="email" required
              autocomplete="email" placeholder="jane@example.com">
+    </div>
+
+    <div class="form-group">
+      <label for="mem-occupation">Occupation</label>
+      <input id="mem-occupation" name="occupation" type="text"
+             autocomplete="organization-title" placeholder="Software Engineer">
+    </div>
+
+    <div class="form-group">
+      <label for="mem-phone">Phone number</label>
+      <input id="mem-phone" name="phone" type="tel"
+             autocomplete="tel" placeholder="+91 98765 43210">
+    </div>
+
+    <div class="form-group">
+      <label for="mem-pincode">Pincode <span class="req">*</span></label>
+      <input id="mem-pincode" name="pincode" type="text" required
+             inputmode="numeric" maxlength="6" placeholder="560001">
+      <span class="pincode-status" aria-live="polite"></span>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="mem-city">City <span class="req">*</span></label>
+        <input id="mem-city" name="city" type="text" required
+               autocomplete="address-level2" placeholder="Bengaluru">
+      </div>
+      <div class="form-group">
+        <label for="mem-state">State <span class="req">*</span></label>
+        <input id="mem-state" name="state" type="text" required
+               autocomplete="address-level1" placeholder="Karnataka">
+      </div>
     </div>
 
     {{/* Honeypot — invisible to humans, bots fill it in */}}
@@ -26,10 +58,44 @@
 
 <script>
 (function () {
-  const form   = document.getElementById('membership-form');
-  const status = form.querySelector('.form-status');
-  const btn    = form.querySelector('.btn-membership-submit');
+  const form    = document.getElementById('membership-form');
+  const status  = form.querySelector('.form-status');
+  const btn     = form.querySelector('.btn-membership-submit');
+  const pinEl   = form.querySelector('[name="pincode"]');
+  const cityEl  = form.querySelector('[name="city"]');
+  const stateEl = form.querySelector('[name="state"]');
+  const pinStatus = form.querySelector('.pincode-status');
 
+  // ── Pincode auto-fill via India Post API ─────────────────────
+  let pincodeTimer;
+  pinEl.addEventListener('input', function () {
+    clearTimeout(pincodeTimer);
+    const pin = this.value.replace(/\D/g, '');
+    if (pin.length !== 6) { pinStatus.textContent = ''; return; }
+    pinStatus.textContent = 'Looking up…';
+    pincodeTimer = setTimeout(function () { lookupPincode(pin); }, 400);
+  });
+
+  async function lookupPincode(pin) {
+    try {
+      const res  = await fetch('https://api.postalpincode.in/pincode/' + pin);
+      const data = await res.json();
+      if (data[0] && data[0].Status === 'Success' && data[0].PostOffice && data[0].PostOffice.length) {
+        const po = data[0].PostOffice[0];
+        if (!cityEl.value)  cityEl.value  = po.District || po.Name || '';
+        if (!stateEl.value) stateEl.value = po.State || '';
+        pinStatus.textContent = '✓ ' + po.District + ', ' + po.State;
+        pinStatus.style.color = '#16a34a';
+      } else {
+        pinStatus.textContent = 'Pincode not found';
+        pinStatus.style.color = '#dc2626';
+      }
+    } catch {
+      pinStatus.textContent = '';
+    }
+  }
+
+  // ── Form submit ──────────────────────────────────────────────
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
     btn.disabled    = true;
@@ -38,9 +104,14 @@
     status.className   = 'form-status';
 
     const payload = {
-      name:    form.querySelector('[name="name"]').value.trim(),
-      email:   form.querySelector('[name="email"]').value.trim(),
-      website: form.querySelector('[name="website"]').value,
+      name:       form.querySelector('[name="name"]').value.trim(),
+      email:      form.querySelector('[name="email"]').value.trim(),
+      occupation: form.querySelector('[name="occupation"]').value.trim(),
+      phone:      form.querySelector('[name="phone"]').value.trim(),
+      pincode:    form.querySelector('[name="pincode"]').value.trim(),
+      city:       cityEl.value.trim(),
+      state:      stateEl.value.trim(),
+      website:    form.querySelector('[name="website"]').value,
     };
 
     try {
@@ -52,7 +123,7 @@
       const data = await res.json();
 
       if (res.ok && data.ok) {
-        form.querySelectorAll('.form-group').forEach(function(g) { g.style.display = 'none'; });
+        form.querySelectorAll('.form-group, .form-row').forEach(function(g) { g.style.display = 'none'; });
         btn.style.display  = 'none';
         status.textContent = 'Request received! We will review it and get back to you shortly.';
         status.classList.add('form-status--success');
