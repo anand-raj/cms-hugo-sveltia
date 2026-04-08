@@ -40,9 +40,9 @@
                autocomplete="address-level2" placeholder="Bengaluru">
       </div>
       <div class="form-group">
-        <label for="mem-state">State <span class="req">*</span></label>
-        <input id="mem-state" name="state" type="text" required
-               autocomplete="address-level1" placeholder="Karnataka">
+        <label for="mem-state">State</label>
+        <input id="mem-state" name="state" type="text" readonly
+               placeholder="Auto-filled from pincode">
       </div>
     </div>
 
@@ -71,8 +71,13 @@
   pinEl.addEventListener('input', function () {
     clearTimeout(pincodeTimer);
     const pin = this.value.replace(/\D/g, '');
-    if (pin.length !== 6) { pinStatus.textContent = ''; return; }
+    if (pin.length !== 6) {
+      stateEl.value = '';
+      pinStatus.textContent = '';
+      return;
+    }
     pinStatus.textContent = 'Looking up…';
+    pinStatus.style.color = '';
     pincodeTimer = setTimeout(function () { lookupPincode(pin); }, 400);
   });
 
@@ -82,16 +87,19 @@
       const data = await res.json();
       if (data[0] && data[0].Status === 'Success' && data[0].PostOffice && data[0].PostOffice.length) {
         const po = data[0].PostOffice[0];
-        if (!cityEl.value)  cityEl.value  = po.District || po.Name || '';
-        if (!stateEl.value) stateEl.value = po.State || '';
+        cityEl.value  = po.District || po.Name || '';
+        stateEl.value = po.State || '';
         pinStatus.textContent = '✓ ' + po.District + ', ' + po.State;
         pinStatus.style.color = '#16a34a';
       } else {
-        pinStatus.textContent = 'Pincode not found';
+        stateEl.value = '';
+        pinStatus.textContent = 'Pincode not found — please enter city and state manually';
         pinStatus.style.color = '#dc2626';
       }
     } catch {
-      pinStatus.textContent = '';
+      stateEl.value = '';
+      pinStatus.textContent = 'Could not look up pincode — please enter city and state manually';
+      pinStatus.style.color = '#b45309';
     }
   }
 
