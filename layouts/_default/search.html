@@ -34,11 +34,13 @@
 (function () {
   // relURL gives the correct subpath regardless of host/port (/index.json or /subpath/index.json)
   // location.origin gives the correct host+port from the browser
-  const indexURL = location.origin + "{{ "index.json" | relURL }}";
+  const indexURL = location.origin + `{{ "index.json" | relURL }}`;
 
   function getQuery() {
     return new URLSearchParams(window.location.search).get("q") || "";
   }
+
+  function sectionLabel(section) {
     return section.charAt(0).toUpperCase() + section.slice(1);
   }
 

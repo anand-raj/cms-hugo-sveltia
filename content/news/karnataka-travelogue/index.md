@@ -14,8 +14,8 @@ tags:
   - india
 toc: true
 comments: true
-image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=1200&fm=webp&q=80"
-image_caption: "Photo by [Harsh Kushwaha](https://unsplash.com/@harshkushwaha) on [Unsplash](https://unsplash.com)"
+image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&fm=webp&q=80"
+image_caption: "Photo by [Tobias Tullius](https://unsplash.com/@tobiastu) on [Unsplash](https://unsplash.com)"
 ---
 
 ## Setting Off

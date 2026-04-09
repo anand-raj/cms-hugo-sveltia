@@ -3,16 +3,52 @@
 {{ $allNews     := where site.RegularPages "Section" "news" }}
 {{ $allEvents   := where site.RegularPages "Section" "events" }}
 {{ $allArticles := where site.RegularPages "Section" "articles" }}
-{{ $heroPage := index $allNews 0 | default (index $allArticles 0) }}
+
+{{/* ── Hero Slider: 3 latest news + 3 latest articles ─────────────────────── */}}
+{{ $sliderNews     := first 3 $allNews }}
+{{ $sliderArticles := first 3 $allArticles }}
+{{ $sliderItems    := $sliderNews | append $sliderArticles }}
 
 <section class="home">
 
-  {{/* ── Hero ──────────────────────────────────────────────────────────────── */}}
-  <div class="home-hero{{ if and $heroPage $heroPage.Params.image }} home-hero--image{{ end }}"
-    {{ if and $heroPage $heroPage.Params.image }}style="--hero-bg: url('{{ $heroPage.Params.image }}')"{{ end }}>
-    <div class="home-hero-inner">
-      <h1>{{ site.Title }}</h1>
-      <p class="home-description">{{ site.Params.description }}</p>
+  <div class="hero-slider" id="heroSlider">
+    <div class="hero-slider-track" id="heroTrack">
+      {{ range $i, $p := $sliderItems }}
+      <div class="hero-slide{{ if eq $i 0 }} is-active{{ end }}"
+           data-index="{{ $i }}"
+           {{ with $p.Params.image }}style="--slide-bg: url('{{ . }}')"{{ end }}>
+        <div class="hero-slide-overlay"></div>
+        <div class="hero-slide-content">
+          <span class="hero-slide-chip">{{ $p.Section | title }}</span>
+          <h2 class="hero-slide-title">
+            <a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>
+          </h2>
+          {{ with $p.Description }}
+            <p class="hero-slide-desc">{{ . | truncate 140 }}</p>
+          {{ end }}
+          <a class="hero-slide-cta" href="{{ $p.RelPermalink }}">
+            Read {{ $p.Section | strings.TrimRight "s" }} →
+          </a>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+
+    {{/* Prev / Next buttons */}}
+    <button class="hero-nav hero-nav--prev" id="heroPrev" aria-label="Previous slide">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="hero-nav hero-nav--next" id="heroNext" aria-label="Next slide">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    {{/* Dot indicators */}}
+    <div class="hero-dots" id="heroDots">
+      {{ range $i, $p := $sliderItems }}
+      <button class="hero-dot{{ if eq $i 0 }} is-active{{ end }}"
+              data-index="{{ $i }}"
+              aria-label="Go to slide {{ add $i 1 }}"></button>
+      {{ end }}
     </div>
   </div>
 
@@ -183,4 +219,60 @@
 
   </div>
 </section>
+
+<script>
+(function () {
+  const slider   = document.getElementById('heroSlider');
+  const slides   = Array.from(slider.querySelectorAll('.hero-slide'));
+  const dots     = Array.from(slider.querySelectorAll('.hero-dot'));
+  const total    = slides.length;
+  let   current  = 0;
+  let   timer;
+
+  function goTo(idx) {
+    slides[current].classList.remove('is-active');
+    dots[current].classList.remove('is-active');
+    current = (idx + total) % total;
+    slides[current].classList.add('is-active');
+    dots[current].classList.add('is-active');
+  }
+
+  function startAuto() {
+    timer = setInterval(function () { goTo(current + 1); }, 5000);
+  }
+
+  function resetAuto() {
+    clearInterval(timer);
+    startAuto();
+  }
+
+  document.getElementById('heroNext').addEventListener('click', function () {
+    goTo(current + 1); resetAuto();
+  });
+  document.getElementById('heroPrev').addEventListener('click', function () {
+    goTo(current - 1); resetAuto();
+  });
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      goTo(parseInt(this.dataset.index)); resetAuto();
+    });
+  });
+
+  // Pause on hover
+  slider.addEventListener('mouseenter', function () { clearInterval(timer); });
+  slider.addEventListener('mouseleave', startAuto);
+
+  // Touch / swipe support
+  let touchStartX = 0;
+  slider.addEventListener('touchstart', function (e) {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  slider.addEventListener('touchend', function (e) {
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 40) { goTo(diff > 0 ? current + 1 : current - 1); resetAuto(); }
+  }, { passive: true });
+
+  startAuto();
+})();
+</script>
 {{ end }}
