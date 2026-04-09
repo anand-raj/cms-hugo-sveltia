@@ -1,4 +1,5 @@
 {{ define "main" }}
+{{ $s := site.Data.settings }}
   <section class="home">
 
     {{/* ── Site Hero ───────────────────────────────────────────────────────── */}}
@@ -10,7 +11,7 @@
     </div>
 
     <div class="home-body">
-      {{ $posts := where site.RegularPages "Section" "posts" }}
+      {{ $posts := where site.RegularPages "Section" "articles" }}
       {{ if $posts }}
 
         {{/* ── Featured Post (latest) ──────────────────────────────────────── */}}
@@ -20,10 +21,12 @@
             {{ partial "post-image.html" (dict "page" $featured "src" . "width" "1200" "alt" $featured.Title "class" "featured-post-image-link" "href" $featured.RelPermalink "loading" "eager") }}
           {{ end }}
           <div class="featured-post-body">
+            {{ if $s.articles_show_categories }}
             {{ with $featured.GetTerms "categories" }}
               <div class="card-meta">
                 {{ range . }}<a class="card-category" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
               </div>
+            {{ end }}
             {{ end }}
             <h2><a href="{{ $featured.RelPermalink }}">{{ $featured.Title }}</a></h2>
             {{ with $featured.Description }}<p class="featured-post-desc">{{ . }}</p>{{ end }}
@@ -39,7 +42,7 @@
         {{ $rest := after 1 $posts }}
         {{ if $rest }}
         <div class="post-grid-section">
-          <h2 class="section-label">More Posts</h2>
+          <h2 class="section-label">More Articles</h2>
           <div class="post-grid">
             {{ range first 4 $rest }}
             {{ $card := . }}
@@ -48,10 +51,12 @@
                 {{ partial "post-image.html" (dict "page" $card "src" . "width" "600" "alt" $card.Title "class" "post-card-image-link" "href" $card.RelPermalink "loading" "lazy") }}
               {{ end }}
               <div class="post-card-body">
+                {{ if $s.articles_show_categories }}
                 {{ with $card.GetTerms "categories" }}
                   <div class="card-meta">
                     {{ range . }}<a class="card-category" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
                   </div>
+                {{ end }}
                 {{ end }}
                 <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
                 {{ with .Description }}<p class="post-card-desc">{{ . }}</p>{{ end }}
@@ -67,7 +72,7 @@
         {{ end }}
 
       {{ else }}
-        <p class="no-posts">No posts yet. Create one with <code>hugo new content/posts/my-post.md</code>.</p>
+        <p class="no-posts">No articles yet. Create one with <code>hugo new content/articles/my-article/index.md</code>.</p>
       {{ end }}
     </div>
   </section>

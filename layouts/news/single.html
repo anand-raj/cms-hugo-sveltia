@@ -1,8 +1,10 @@
 {{ define "main" }}
+{{ $s := site.Data.settings }}
 <div class="content-wrap">
 <article class="post">
 
   {{/* ── Hero Image ─────────────────────────────────────────────────────── */}}
+  {{ if $s.news_show_hero_image }}
   {{ with .Params.image }}
     <figure class="post-hero">
       {{ partial "post-image.html" (dict "page" $ "src" . "width" "1200" "alt" $.Title "loading" "eager") }}
@@ -11,32 +13,43 @@
       {{ end }}
     </figure>
   {{ end }}
+  {{ end }}
 
-  {{/* ── Post Header ─────────────────────────────────────────────────────── */}}
+  {{/* ── Header ──────────────────────────────────────────────────────────── */}}
   <header class="post-header">
+    {{ if $s.news_show_categories }}
     <div class="post-meta">
       {{ range .GetTerms "categories" }}
         <a class="post-category" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
       {{ end }}
     </div>
+    {{ end }}
 
     <h1 class="post-title">{{ .Title }}</h1>
 
+    {{ if $s.news_show_description }}
     {{ with .Description }}
       <p class="post-description">{{ . }}</p>
     {{ end }}
+    {{ end }}
 
     <div class="post-byline">
-      {{ with .Params.author }}<span class="post-author">{{ . }}</span>{{ end }}
-      <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">
-        {{ .Date.Format "January 2, 2006" }}
-      </time>
-      {{ if ne .Lastmod .Date }}
-        <span class="post-updated">Updated {{ .Lastmod.Format "January 2, 2006" }}</span>
+      {{ if $s.news_show_author }}
+        {{ with .Params.author }}<span class="post-author">{{ . }}</span>{{ end }}
       {{ end }}
-      <span class="post-read-time">{{ math.Round (div (countwords .Content) 200.0) }} min read</span>
+      {{ if $s.news_show_date }}
+        <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">
+          {{ .Date.Format "January 2, 2006" }}
+        </time>
+      {{ end }}
+      {{ if $s.news_show_updated }}
+        {{ if ne .Lastmod .Date }}
+          <span class="post-updated">Updated {{ .Lastmod.Format "January 2, 2006" }}</span>
+        {{ end }}
+      {{ end }}
     </div>
 
+    {{ if $s.news_show_tags }}
     {{ with .GetTerms "tags" }}
       <ul class="post-tags">
         {{ range . }}
@@ -44,36 +57,17 @@
         {{ end }}
       </ul>
     {{ end }}
+    {{ end }}
   </header>
 
-  {{/* ── Table of Contents ───────────────────────────────────────────────── */}}
-  {{ if and .Params.toc .TableOfContents }}
-    <nav class="post-toc" aria-label="Table of contents">
-      <h2>Contents</h2>
-      {{ .TableOfContents }}
-    </nav>
-  {{ end }}
-
-  {{/* ── Post Body ───────────────────────────────────────────────────────── */}}
+  {{/* ── Body ────────────────────────────────────────────────────────────── */}}
   <div class="post-content">
     {{ .Content }}
   </div>
 
-  {{/* ── Post Footer ─────────────────────────────────────────────────────── */}}
+  {{/* ── Footer ──────────────────────────────────────────────────────────── */}}
   <footer class="post-footer">
-    {{/* Tag list */}}
-    {{ with .GetTerms "tags" }}
-      <div class="post-footer-tags">
-        <strong>Tags:</strong>
-        <ul class="post-tags">
-          {{ range . }}
-            <li><a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a></li>
-          {{ end }}
-        </ul>
-      </div>
-    {{ end }}
-
-    {{/* Prev / Next navigation */}}
+    {{ if $s.news_show_prev_next }}
     <nav class="post-nav" aria-label="Post navigation">
       {{ with .PrevInSection }}
         <a class="post-nav-prev" href="{{ .RelPermalink }}">
@@ -88,6 +82,7 @@
         </a>
       {{ end }}
     </nav>
+    {{ end }}
   </footer>
 
 </article>

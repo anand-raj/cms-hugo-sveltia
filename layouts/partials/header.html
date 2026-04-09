@@ -1,6 +1,9 @@
 <header class="site-header">
   <nav class="site-nav">
     <a class="site-title" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <ul class="nav-links">
       {{ with site.Menus.main }}
         {{ range . }}
@@ -11,3 +14,13 @@
     </ul>
   </nav>
 </header>
+<script>
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var menu = document.querySelector('.nav-links');
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open);
+    });
+  })();
+</script>

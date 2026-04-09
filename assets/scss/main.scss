@@ -1,12 +1,16 @@
 // ─── Variables ────────────────────────────────────────────────────────────────
-$font-stack:    system-ui, -apple-system, sans-serif;
-$primary-color: #1a1a2e;
-$accent-color:  #e94560;
-$text-color:    #333;
-$bg-color:      #fff;
+// Layout widths (not overridable at runtime, kept as SCSS vars)
 $max-width:     800px;
 $content-width: 860px;
 $wide-width:    1200px;
+
+// Design tokens — values come from CSS custom properties set in head.html
+// Fallbacks here match the defaults in data/settings.yml
+$font-stack:    var(--font-body,    system-ui, sans-serif);
+$primary-color: var(--color-primary, #1a1a2e);
+$accent-color:  var(--color-accent,  #e94560);
+$text-color:    var(--color-text,    #333);
+$bg-color:      var(--color-bg,      #fff);
 
 // ─── Reset ────────────────────────────────────────────────────────────────────
 *, *::before, *::after {
@@ -14,9 +18,9 @@ $wide-width:    1200px;
 }
 
 body {
-  font-family: $font-stack;
-  color: $text-color;
-  background-color: $bg-color;
+  font-family: var(--font-body, system-ui, sans-serif);
+  color: var(--color-text, #333);
+  background-color: var(--color-bg, #fff);
   margin: 0;
   padding: 0;
   line-height: 1.6;
@@ -38,14 +42,19 @@ main {
 .site-header {
   background: $primary-color;
   color: #fff;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 
   .site-nav {
-    max-width: $max-width;
+    max-width: $wide-width;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .site-title {
@@ -53,6 +62,36 @@ main {
     text-decoration: none;
     font-size: 1.25rem;
     font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  // ── Hamburger button (hidden on desktop) ──
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1.75rem;
+    height: 1.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: auto;
+
+    span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    &[aria-expanded="true"] {
+      span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+      span:nth-child(2) { opacity: 0; }
+      span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+    }
   }
 
   .nav-links {
@@ -83,15 +122,48 @@ main {
       &:hover { opacity: 0.85; color: #fff !important; }
     }
   }
+
+  // ── Mobile styles ──
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav-links {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      gap: 0;
+      padding: 0.75rem 0;
+
+      li {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      a {
+        display: block;
+        padding: 0.65rem 0.25rem;
+      }
+
+      .nav-membership {
+        display: inline-block;
+        margin: 0.5rem 0;
+      }
+
+      &.is-open {
+        display: flex;
+      }
+    }
+  }
 }
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
 .site-footer {
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-border);
   padding: 2rem 1rem;
   text-align: center;
   font-size: 0.875rem;
-  color: #666;
+  color: var(--color-muted);
 
   .social-links {
     list-style: none;
@@ -116,11 +188,11 @@ main {
 
 .home-hero {
   width: 100%;
-  background: #f0f4ff;
+  background: var(--color-surface);
   color: $primary-color;
   padding: 5rem 1.5rem;
   text-align: center;
-  border-bottom: 1px solid #dde4f5;
+  border-bottom: 1px solid var(--color-border);
 
   .home-hero-inner { max-width: 860px; margin: 0 auto; }
 
@@ -132,7 +204,7 @@ main {
 
   .home-description {
     font-size: clamp(1rem, 2vw, 1.25rem);
-    color: #5a6a8a;
+    color: var(--color-muted);
     max-width: 600px;
     margin: 0 auto;
   }
@@ -152,7 +224,7 @@ main {
   align-items: center;
   margin-bottom: 4rem;
   padding-bottom: 4rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -162,7 +234,7 @@ main {
     display: block;
     border-radius: 8px;
     overflow: hidden;
-    background: #f0f4ff;
+    background: var(--color-surface);
     aspect-ratio: 16 / 9;
 
     img {
@@ -195,7 +267,7 @@ main {
 
   &-desc {
     font-size: 1.05rem;
-    color: #555;
+    color: var(--color-muted);
     line-height: 1.6;
     margin: 0;
   }
@@ -216,7 +288,7 @@ main {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #aaa;
+  color: var(--color-subtle);
   margin-bottom: 1.5rem;
 }
 
@@ -229,7 +301,7 @@ main {
 .post-card {
   display: flex;
   flex-direction: column;
-  border: 1px solid #eee;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   overflow: hidden;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
@@ -242,7 +314,7 @@ main {
   &-image-link {
     display: block;
     overflow: hidden;
-    background: #f0f4ff;
+    background: var(--color-surface);
     aspect-ratio: 16 / 9;
 
     img {
@@ -277,7 +349,7 @@ main {
 
   &-desc {
     font-size: 0.875rem;
-    color: #666;
+    color: var(--color-muted);
     line-height: 1.5;
     margin: 0;
     flex: 1;
@@ -303,18 +375,19 @@ main {
 
 .card-byline {
   font-size: 0.8rem;
-  color: #999;
+  color: var(--color-subtle);
   margin-top: auto;
   padding-top: 0.5rem;
 }
 
 .no-posts {
-  color: #888;
+  color: var(--color-subtle);
   font-size: 0.95rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: $primary-color;
+  color: var(--color-primary, #1a1a2e);
+  font-family: var(--font-heading, system-ui, sans-serif);
   line-height: 1.2;
 }
 
@@ -342,7 +415,7 @@ img {
 
   figcaption {
     font-size: 0.8rem;
-    color: #888;
+    color: var(--color-subtle);
     text-align: center;
     padding: 0.5rem 0;
   }
@@ -351,7 +424,7 @@ img {
 .post-header {
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .post-meta {
@@ -376,7 +449,7 @@ img {
 
 .post-description {
   font-size: 1.1rem;
-  color: #555;
+  color: var(--color-muted);
   margin: 0 0 1rem;
   line-height: 1.5;
 }
@@ -386,7 +459,7 @@ img {
   flex-wrap: wrap;
   gap: 0.75rem;
   font-size: 0.875rem;
-  color: #888;
+  color: var(--color-subtle);
   align-items: center;
 
   .post-author { font-weight: 600; color: $text-color; }
@@ -405,8 +478,8 @@ img {
     display: inline-block;
     padding: 0.2rem 0.6rem;
     border-radius: 3px;
-    background: #f0f0f0;
-    color: #555;
+    background: var(--color-surface);
+    color: var(--color-muted);
     font-size: 0.8rem;
     text-decoration: none;
 
@@ -416,7 +489,7 @@ img {
 
 // ─── Table of Contents ────────────────────────────────────────────────────────
 .post-toc {
-  background: #f8f8f8;
+  background: var(--color-surface);
   border-left: 3px solid $accent-color;
   border-radius: 4px;
   padding: 1rem 1.25rem;
@@ -427,7 +500,7 @@ img {
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #999;
+    color: var(--color-subtle);
     margin: 0 0 0.75rem;
   }
 
@@ -446,7 +519,7 @@ img {
   p { margin: 1rem 0; }
 
   pre {
-    background: #1a1a2e;
+    background: var(--color-pre-bg);
     color: #e0e0e0;
     padding: 1rem 1.25rem;
     border-radius: 4px;
@@ -455,7 +528,7 @@ img {
   }
 
   code {
-    background: #f0f0f0;
+    background: var(--color-surface);
     padding: 0.15em 0.4em;
     border-radius: 3px;
     font-size: 0.9em;
@@ -467,7 +540,7 @@ img {
     border-left: 3px solid $accent-color;
     margin: 1.5rem 0;
     padding: 0.5rem 1rem;
-    color: #555;
+    color: var(--color-muted);
     font-style: italic;
   }
 
@@ -478,13 +551,13 @@ img {
     font-size: 0.95rem;
 
     th, td {
-      border: 1px solid #e0e0e0;
+      border: 1px solid var(--color-border);
       padding: 0.5rem 0.75rem;
       text-align: left;
     }
 
-    th { background: #f5f5f5; font-weight: 600; }
-    tr:nth-child(even) td { background: #fafafa; }
+    th { background: var(--color-surface); font-weight: 600; }
+    tr:nth-child(even) td { background: var(--color-surface); }
   }
 }
 
@@ -492,7 +565,7 @@ img {
 .post-footer {
   margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-border);
 }
 
 .post-footer-tags {
@@ -513,7 +586,7 @@ img {
     flex-direction: column;
     gap: 0.25rem;
     padding: 1rem;
-    border: 1px solid #eee;
+    border: 1px solid var(--color-border);
     border-radius: 4px;
     text-decoration: none;
     color: $text-color;
@@ -528,7 +601,7 @@ img {
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #aaa;
+    color: var(--color-subtle);
   }
 
   .post-nav-title {
@@ -561,12 +634,12 @@ img {
     input {
       width: 100%;
       padding: 0.625rem 0.875rem;
-      border: 1.5px solid #d1d5db;
+      border: 1.5px solid var(--color-border);
       border-radius: 5px;
       font-size: 1rem;
       font-family: inherit;
       color: $primary-color;
-      background: #fff;
+      background: var(--color-bg);
       box-sizing: border-box;
       transition: border-color 0.15s;
 
@@ -575,7 +648,7 @@ img {
         border-color: $accent-color;
       }
 
-      &::placeholder { color: #aaa; }
+      &::placeholder { color: var(--color-subtle); }
     }
   }
 
@@ -617,7 +690,7 @@ img {
 }
 
 .book-card {
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   overflow: hidden;
   display: flex;
@@ -630,7 +703,7 @@ img {
     display: block;
     aspect-ratio: 2/3;
     overflow: hidden;
-    background: #f3f4f6;
+    background: var(--color-surface);
 
     img {
       width: 100%;
@@ -655,7 +728,7 @@ img {
 
   &-desc {
     font-size: 0.85rem;
-    color: #666;
+    color: var(--color-muted);
     flex: 1;
     margin: 0 0 1rem;
     line-height: 1.5;
@@ -715,7 +788,7 @@ img {
 
 .book-description {
   font-size: 1.05rem;
-  color: #444;
+  color: var(--color-muted);
   margin: 0;
   line-height: 1.6;
 }

@@ -14,3 +14,18 @@ title = 'My New Hugo Project'
   [params.social]
     twitter = "yourtwitterhandle"
     github  = "anand-raj"
+
+[[menus.main]]
+  name   = "Articles"
+  url    = "/articles/"
+  weight = 10
+
+[[menus.main]]
+  name   = "News"
+  url    = "/news/"
+  weight = 30
+
+[[menus.main]]
+  name   = "Events"
+  url    = "/events/"
+  weight = 40
