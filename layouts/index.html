@@ -1,67 +1,126 @@
 {{ define "main" }}
 {{ $s := site.Data.settings }}
-  <section class="home">
+{{ $allNews     := where site.RegularPages "Section" "news" }}
+{{ $allEvents   := where site.RegularPages "Section" "events" }}
+{{ $allArticles := where site.RegularPages "Section" "articles" }}
+{{ $heroPage := index $allNews 0 | default (index $allArticles 0) }}
 
-    {{/* ── Site Hero ───────────────────────────────────────────────────────── */}}
-    <div class="home-hero">
-      <div class="home-hero-inner">
-        <h1>{{ site.Title }}</h1>
-        <p class="home-description">{{ site.Params.description }}</p>
+<section class="home">
+
+  {{/* ── Hero ──────────────────────────────────────────────────────────────── */}}
+  <div class="home-hero{{ if and $heroPage $heroPage.Params.image }} home-hero--image{{ end }}"
+    {{ if and $heroPage $heroPage.Params.image }}style="--hero-bg: url('{{ $heroPage.Params.image }}')"{{ end }}>
+    <div class="home-hero-inner">
+      <h1>{{ site.Title }}</h1>
+      <p class="home-description">{{ site.Params.description }}</p>
+    </div>
+  </div>
+
+  <div class="home-body">
+
+    {{/* ── Featured Article ────────────────────────────────────────────────── */}}
+    {{ with index $allArticles 0 }}
+    {{ $featured := . }}
+    <div class="featured-post">
+      {{ with $featured.Params.image }}
+        {{ partial "post-image.html" (dict "page" $featured "src" . "width" "1200" "alt" $featured.Title "class" "featured-post-image-link" "href" $featured.RelPermalink "loading" "eager") }}
+      {{ end }}
+      <div class="featured-post-body">
+        <span class="section-chip">Featured Article</span>
+        <h2><a href="{{ $featured.RelPermalink }}">{{ $featured.Title }}</a></h2>
+        {{ with $featured.Description }}<p class="featured-post-desc">{{ . }}</p>{{ end }}
+        <div class="card-byline">
+          <time datetime="{{ $featured.Date.Format "2006-01-02" }}">{{ $featured.Date.Format "January 2, 2006" }}</time>
+          {{ with $featured.Params.author }} · <span>{{ . }}</span>{{ end }}
+        </div>
+        <a class="featured-post-cta" href="{{ $featured.RelPermalink }}">Read article →</a>
       </div>
     </div>
+    {{ end }}
 
-    <div class="home-body">
-      {{ $posts := where site.RegularPages "Section" "articles" }}
-      {{ if $posts }}
+    {{/* ── Two-column layout ───────────────────────────────────────────────── */}}
+    <div class="home-main-cols">
 
-        {{/* ── Featured Post (latest) ──────────────────────────────────────── */}}
-        {{ $featured := index $posts 0 }}
-        <div class="featured-post">
-          {{ with $featured.Params.image }}
-            {{ partial "post-image.html" (dict "page" $featured "src" . "width" "1200" "alt" $featured.Title "class" "featured-post-image-link" "href" $featured.RelPermalink "loading" "eager") }}
-          {{ end }}
-          <div class="featured-post-body">
-            {{ if $s.articles_show_categories }}
-            {{ with $featured.GetTerms "categories" }}
-              <div class="card-meta">
-                {{ range . }}<a class="card-category" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
+      {{/* ════ LEFT COLUMN ════ */}}
+      <div class="home-main-col home-main-col--primary">
+
+        {{/* 1 · Latest News — 3-column cards */}}
+        {{ if $allNews }}
+        <div class="home-section">
+          <div class="section-header">
+            <h2 class="section-label">Latest News</h2>
+            <a class="section-viewall" href="/news/">View all →</a>
+          </div>
+          <div class="post-grid post-grid--3">
+            {{ range first 3 $allNews }}
+            {{ $card := . }}
+            <article class="post-card">
+              {{ with .Params.image }}
+                {{ partial "post-image.html" (dict "page" $card "src" . "width" "600" "alt" $card.Title "class" "post-card-image-link" "href" $card.RelPermalink "loading" "eager") }}
+              {{ end }}
+              <div class="post-card-body">
+                <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                {{ with .Description }}<p class="post-card-desc">{{ . }}</p>{{ end }}
+                <div class="card-byline">
+                  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+                </div>
               </div>
+            </article>
             {{ end }}
-            {{ end }}
-            <h2><a href="{{ $featured.RelPermalink }}">{{ $featured.Title }}</a></h2>
-            {{ with $featured.Description }}<p class="featured-post-desc">{{ . }}</p>{{ end }}
-            <div class="card-byline">
-              <time datetime="{{ $featured.Date.Format "2006-01-02" }}">{{ $featured.Date.Format "January 2, 2006" }}</time>
-              {{ with $featured.Params.author }} · <span>{{ . }}</span>{{ end }}
-            </div>
-            <a class="featured-post-cta" href="{{ $featured.RelPermalink }}">Read article →</a>
           </div>
         </div>
+        {{ end }}
 
-        {{/* ── Post Grid (next 4) ───────────────────────────────────────────── */}}
-        {{ $rest := after 1 $posts }}
-        {{ if $rest }}
-        <div class="post-grid-section">
-          <h2 class="section-label">More Articles</h2>
-          <div class="post-grid">
-            {{ range first 4 $rest }}
+        {{/* 2 · More News — thumbnail rows */}}
+        {{ $moreNews := after 3 $allNews }}
+        {{ if $moreNews }}
+        <div class="home-section">
+          <div class="section-header">
+            <h2 class="section-label">More News</h2>
+            <a class="section-viewall" href="/news/">View all →</a>
+          </div>
+          <div class="news-list">
+            {{ range first 5 $moreNews }}
+            {{ $n := . }}
+            <article class="news-row">
+              {{ with .Params.image }}
+              <a class="news-row-thumb" href="{{ $n.RelPermalink }}">
+                {{ partial "post-image.html" (dict "page" $n "src" . "width" "300" "alt" $n.Title "loading" "lazy") }}
+              </a>
+              {{ end }}
+              <div class="news-row-body">
+                <h3><a href="{{ $n.RelPermalink }}">{{ $n.Title }}</a></h3>
+                {{ with $n.Description }}<p>{{ . | truncate 110 }}</p>{{ end }}
+                <div class="card-byline">
+                  <time datetime="{{ $n.Date.Format "2006-01-02" }}">{{ $n.Date.Format "Jan 2, 2006" }}</time>
+                </div>
+              </div>
+            </article>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+
+        {{/* 3 · More Articles — card grid */}}
+        {{ $restArticles := after 1 $allArticles }}
+        {{ if $restArticles }}
+        <div class="home-section">
+          <div class="section-header">
+            <h2 class="section-label">More Articles</h2>
+            <a class="section-viewall" href="/articles/">View all →</a>
+          </div>
+          <div class="post-grid post-grid--3">
+            {{ range first 3 $restArticles }}
             {{ $card := . }}
             <article class="post-card">
               {{ with .Params.image }}
                 {{ partial "post-image.html" (dict "page" $card "src" . "width" "600" "alt" $card.Title "class" "post-card-image-link" "href" $card.RelPermalink "loading" "lazy") }}
               {{ end }}
               <div class="post-card-body">
-                {{ if $s.articles_show_categories }}
-                {{ with $card.GetTerms "categories" }}
-                  <div class="card-meta">
-                    {{ range . }}<a class="card-category" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
-                  </div>
-                {{ end }}
-                {{ end }}
                 <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
                 {{ with .Description }}<p class="post-card-desc">{{ . }}</p>{{ end }}
                 <div class="card-byline">
-                  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+                  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
                   {{ with .Params.author }} · <span>{{ . }}</span>{{ end }}
                 </div>
               </div>
@@ -71,9 +130,57 @@
         </div>
         {{ end }}
 
-      {{ else }}
-        <p class="no-posts">No articles yet. Create one with <code>hugo new content/articles/my-article/index.md</code>.</p>
-      {{ end }}
-    </div>
-  </section>
+      </div>{{/* end left column */}}
+
+      {{/* ════ RIGHT COLUMN (sidebar) ════ */}}
+      <div class="home-main-col home-main-col--sidebar">
+
+        {{/* 1 · Search */}}
+        <div class="sidebar-widget">
+          <div class="section-header">
+            <h2 class="section-label">Search</h2>
+          </div>
+          <form class="search-form" action="{{ "/search/" | relURL }}" method="get">
+            <div class="search-input-wrap">
+              <input type="search" name="q" placeholder="Search articles, news…" class="search-input" autocomplete="off">
+              <button type="submit" class="search-btn" aria-label="Search">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        {{/* 2 · Upcoming Events */}}
+        {{ if $allEvents }}
+        <div class="sidebar-widget">
+          <div class="section-header">
+            <h2 class="section-label">Upcoming Events</h2>
+            <a class="section-viewall" href="/events/">View all →</a>
+          </div>
+          <div class="events-sidebar">
+            {{ range first 5 $allEvents }}
+            {{ $e := . }}
+            <article class="event-card-mini">
+              {{ with .Params.event_date }}
+              <div class="event-card-mini-date">
+                <span class="event-day">{{ dateFormat "02" . }}</span>
+                <span class="event-month">{{ dateFormat "Jan" . }}</span>
+              </div>
+              {{ end }}
+              <div class="event-card-mini-body">
+                <h3><a href="{{ $e.RelPermalink }}">{{ $e.Title }}</a></h3>
+                {{ with .Params.event_location }}<p class="event-location">{{ . }}</p>{{ end }}
+              </div>
+            </article>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+
+      </div>{{/* end sidebar */}}
+
+    </div>{{/* end home-main-cols */}}
+
+  </div>
+</section>
 {{ end }}

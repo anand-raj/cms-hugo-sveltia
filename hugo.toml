@@ -2,6 +2,9 @@ baseURL = 'https://anand-raj.github.io/cms-hugo-sveltia/'
 languageCode = 'en-us'
 title = 'My New Hugo Project'
 
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
 [params]
   description = "A production-ready Hugo site built with best practices."
   # Set this to your membership worker URL after deploying it to Cloudflare

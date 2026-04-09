@@ -13,6 +13,8 @@ tags:
   - kannada
   - sveltia
 toc: true
+image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&fm=webp&q=80"
+image_caption: "Photo by [Ilya Pavlov](https://unsplash.com/@ilyapavlov) on [Unsplash](https://unsplash.com)"
 comments: false
 extra_font: "https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;600;700&display=swap"
 ---
