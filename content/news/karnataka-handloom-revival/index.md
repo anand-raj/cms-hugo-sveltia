@@ -14,6 +14,8 @@ tags:
   - economy
 toc: false
 comments: true
+image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1200&fm=webp&q=80"
+image_caption: "Photo by [Nikhita S](https://unsplash.com/@nikhita) on [Unsplash](https://unsplash.com)"
 ---
 
 The Union Ministry of Textiles has approved a ₹48 crore allocation for Karnataka's handloom sector under the National Handloom Development Programme (NHDP), with funds earmarked for three major weaving clusters: Ilkal in Bagalkote district, Dharwad, and Molakalmuru in Chitradurga district.

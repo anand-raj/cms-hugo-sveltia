@@ -14,6 +14,8 @@ tags:
   - karnataka
 toc: false
 comments: true
+image: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&fm=webp&q=80"
+image_caption: "Photo by [Geran de Klerk](https://unsplash.com/@gerandeklerk) on [Unsplash](https://unsplash.com)"
 ---
 
 A report released by the Karnataka Forest Department this week estimates that approximately 4,200 hectares of forest cover in the Western Ghats have been lost between 2021 and 2026, with illegal granite quarrying, arecanut plantation expansion, and road widening projects cited as the primary drivers.

@@ -14,6 +14,8 @@ tags:
   - environment
 toc: false
 comments: true
+image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&fm=webp&q=80"
+image_caption: "Photo by [Steffen Wienberg](https://unsplash.com/@steffenwienberg) on [Unsplash](https://unsplash.com)"
 ---
 
 Traditional fisherfolk organisations along the Karnataka coast have submitted a memorandum to the state fisheries department requesting an extension of the annual trawling ban from its current 61-day period to 90 days, arguing that the existing moratorium is insufficient to allow breeding fish populations to recover.

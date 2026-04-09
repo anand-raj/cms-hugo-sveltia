@@ -14,6 +14,8 @@ tags:
   - karnataka
 toc: false
 comments: true
+image: "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=1200&fm=webp&q=80"
+image_caption: "Photo by [Chris Gallagher](https://unsplash.com/@chriswebdog) on [Unsplash](https://unsplash.com)"
 ---
 
 Twenty-two months after the August 2024 floods devastated large parts of Kodagu district, more than 1,200 families remain in government-run transit camps and relief shelters, still waiting for the permanent housing promised under the state's disaster rehabilitation scheme.

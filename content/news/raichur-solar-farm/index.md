@@ -14,6 +14,8 @@ tags:
   - karnataka
 toc: false
 comments: true
+image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&fm=webp&q=80"
+image_caption: "Photo by [American Public Power Association](https://unsplash.com/@publicpowerorg) on [Unsplash](https://unsplash.com)"
 ---
 
 A 500 MW solar power plant in Raichur district has commenced commercial operations, making it one of the largest single solar installations in Karnataka and a significant step in the state's push toward renewable energy targets.
