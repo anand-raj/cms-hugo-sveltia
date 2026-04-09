@@ -36,6 +36,91 @@ main {
   max-width: $content-width;
   margin: 0 auto;
   padding: 2.5rem 1.5rem;
+
+  @media (max-width: 480px) {
+    padding: 1.5rem 1rem;
+  }
+
+  &--wide {
+    max-width: $wide-width;
+  }
+}
+
+// ─── Article two-column layout ────────────────────────────────────────────────
+.post-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 3rem;
+  align-items: start;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  &__sidebar {
+    position: sticky;
+    top: calc(var(--header-h, 60px) + 1.5rem);
+
+    // Hide sidebar on portrait mobile
+    @media (max-width: 900px) {
+      display: none;
+    }
+  }
+
+  &__main {
+    min-width: 0; // prevent grid blowout
+  }
+}
+
+// Anchor targets clear the sticky header
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+  scroll-margin-top: calc(var(--header-h, 60px) + 1rem);
+}
+
+// ─── Sidebar widgets (shared with homepage sidebar) ──────────────────────────
+.sidebar-widget-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-subtle);
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.sidebar-related {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+
+  li {
+    display: flex;
+    flex-direction: column;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--color-border);
+    &:last-child { border-bottom: none; }
+  }
+
+  a {
+    font-size: 0.9rem;
+    color: $primary-color;
+    text-decoration: none;
+    line-height: 1.35;
+    &:hover { color: $accent-color; }
+  }
+
+  .sidebar-related-date {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    margin-top: 0.2rem;
+  }
 }
 
 // ─── Header ───────────────────────────────────────────────────────────────────
@@ -361,6 +446,9 @@ main {
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
   }
 
   &-image-link {
@@ -430,10 +518,19 @@ main {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1.5rem;
 
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
   &--3 {
     grid-template-columns: repeat(3, 1fr);
 
     @media (max-width: 700px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 480px) {
       grid-template-columns: 1fr;
     }
   }
@@ -538,12 +635,17 @@ main {
 
   @media (max-width: 960px) {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
 
 .home-main-col--sidebar {
   position: sticky;
   top: calc(var(--header-h, 60px) + 1.5rem);
+
+  @media (max-width: 960px) {
+    position: static;
+  }
 }
 
 // ─── Home: section spacing ────────────────────────────────────────────────────
@@ -867,6 +969,29 @@ img {
     text-align: center;
     padding: 0.5rem 0;
   }
+
+  // Article-specific: contained, capped height
+  &--article {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 0;
+
+    img {
+      width: 100%;
+      max-height: 460px;
+      object-fit: cover;
+      display: block;
+
+      @media (max-width: 480px) {
+        max-height: 220px;
+      }
+    }
+
+    figcaption {
+      text-align: left;
+      padding: 0.4rem 0;
+    }
+  }
 }
 
 .post-header {
@@ -1028,6 +1153,10 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 
   a {
     display: flex;

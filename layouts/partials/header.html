@@ -1,4 +1,4 @@
-<header class="site-header">
+<header class="site-header" id="siteHeader">
   <nav class="site-nav">
     <a class="site-title" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -22,5 +22,13 @@
       var open = menu.classList.toggle('is-open');
       btn.setAttribute('aria-expanded', open);
     });
+
+    // Set real header height as CSS variable so sticky offsets are exact
+    function setHeaderHeight() {
+      var h = document.getElementById('siteHeader').offsetHeight;
+      document.documentElement.style.setProperty('--header-h', h + 'px');
+    }
+    setHeaderHeight();
+    window.addEventListener('resize', setHeaderHeight);
   })();
 </script>
