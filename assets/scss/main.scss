@@ -951,6 +951,135 @@ img {
   display: block;
 }
 
+// ─── List Page ────────────────────────────────────────────────────────────────
+
+.list-hero {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 1.5rem;
+
+  &-inner {
+    max-width: $wide-width;
+    margin: 0 auto;
+  }
+
+  &-title {
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    margin: 0 0 0.2rem;
+  }
+
+  &-desc {
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    margin: 0;
+    max-width: 600px;
+  }
+}
+
+.list-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.list-filter-chip {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.35em 0.9em;
+  border-radius: 20px;
+  border: 1.5px solid var(--color-border);
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+
+  &:hover {
+    border-color: $accent-color;
+    color: $accent-color;
+  }
+
+  &.is-active {
+    background: $accent-color;
+    border-color: $accent-color;
+    color: #fff;
+  }
+}
+
+// ─── List: featured article ───────────────────────────────────────────────────
+.list-featured {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  padding: 2.5rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  &-img {
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: var(--color-surface);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover img { transform: scale(1.02); }
+  }
+
+  &-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  h2 {
+    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    margin: 0;
+    line-height: 1.25;
+
+    a {
+      color: $primary-color;
+      text-decoration: none;
+      &:hover { color: $accent-color; }
+    }
+  }
+
+  &-desc {
+    font-size: 1rem;
+    color: var(--color-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+// ─── List: article grid ───────────────────────────────────────────────────────
+.list-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding-top: 2rem;
+
+  @media (max-width: 860px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
 // ─── Post Layout ──────────────────────────────────────────────────────────────
 .post {
   width: 100%;
@@ -974,7 +1103,7 @@ img {
   &--article {
     border-radius: 8px;
     overflow: hidden;
-    margin-bottom: 0;
+    margin-bottom: 2.5rem;
 
     img {
       width: 100%;
