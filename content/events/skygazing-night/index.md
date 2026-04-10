@@ -10,6 +10,7 @@ event_end_date: 2026-05-04T01:00:00+05:30
 event_location: "Nandi Hills, Karnataka (70 km from Bengaluru)"
 event_url: "https://example.com/events/skygazing"
 registration_url: "https://example.com/register/skygazing"
+image: images/poster.svg
 categories:
   - Event
 tags:

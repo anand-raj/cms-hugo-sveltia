@@ -10,6 +10,7 @@ event_end_date: 2026-04-26T09:30:00+05:30
 event_location: "Bannerghatta National Park fringe, South Bengaluru"
 event_url: "https://example.com/events/nature-walk"
 registration_url: "https://example.com/register/nature-walk"
+image: images/poster.svg
 categories:
   - Event
 tags:

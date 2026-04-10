@@ -10,6 +10,7 @@ event_end_date: 2026-05-10T11:00:00+05:30
 event_location: "Ranganathittu Bird Sanctuary, Srirangapatna, Mandya District (130 km from Bengaluru)"
 event_url: "https://example.com/events/bird-watching"
 registration_url: "https://example.com/register/bird-watching"
+image: images/poster.svg
 categories:
   - Event
 tags:

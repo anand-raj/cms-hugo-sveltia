@@ -10,6 +10,7 @@ event_end_date: 2026-05-18T16:00:00+05:30
 event_location: "Kudremukh National Park, Chikkamagaluru, Karnataka"
 event_url: "https://example.com/events/kudremukh-trek"
 registration_url: "https://example.com/register/kudremukh-trek"
+image: images/poster.svg
 categories:
   - Event
 tags:

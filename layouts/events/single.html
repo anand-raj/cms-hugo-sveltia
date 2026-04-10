@@ -59,7 +59,7 @@
       {{ end }}
       {{ with .Params.registration_url }}
         <div class="event-meta-item">
-          <a class="btn-event-register" href="{{ . }}" target="_blank" rel="noopener">Register →</a>
+          <a class="btn-event-register" href="#event-register">Register for this event ↓</a>
         </div>
       {{ end }}
     </div>
@@ -91,6 +91,92 @@
   <div class="post-content">
     {{ .Content }}
   </div>
+
+  {{/* ── Registration Form ─────────────────────────────────────────────── */}}
+  {{ with .Params.registration_url }}
+  <section class="event-register" id="event-register">
+    <h2 class="event-register-title">Register for this Event</h2>
+    <div id="reg-message" class="event-register-msg" style="display:none"></div>
+    <form class="event-register-form" id="regForm" novalidate>
+      <input type="hidden" id="reg-slug"  value="{{ $.Page.File.Dir | strings.TrimRight "/" | path.Base }}">
+      <input type="hidden" id="reg-title" value="{{ $.Title }}">
+      <div class="event-register-row">
+        <div class="event-register-field">
+          <label for="reg-name">Full name <span>*</span></label>
+          <input type="text" id="reg-name" name="name" required autocomplete="name" placeholder="Your full name">
+        </div>
+        <div class="event-register-field">
+          <label for="reg-email">Email <span>*</span></label>
+          <input type="email" id="reg-email" name="email" required autocomplete="email" placeholder="you@example.com">
+        </div>
+      </div>
+      <div class="event-register-row">
+        <div class="event-register-field">
+          <label for="reg-phone">Phone <small>(optional)</small></label>
+          <input type="tel" id="reg-phone" name="phone" autocomplete="tel" placeholder="+91 98765 43210">
+        </div>
+        <div class="event-register-field">
+          <label for="reg-participants">Number of participants</label>
+          <input type="number" id="reg-participants" name="participants" value="1" min="1" max="10">
+        </div>
+      </div>
+      <div class="event-register-field">
+        <label for="reg-notes">Notes <small>(optional)</small></label>
+        <textarea id="reg-notes" name="notes" rows="3" placeholder="Any special requirements, dietary needs, etc."></textarea>
+      </div>
+      <button type="submit" class="event-register-btn" id="regSubmit">Submit Registration</button>
+    </form>
+  </section>
+
+  <script>
+  (function () {
+    var WORKER = "{{ $s.events_worker_url | default "https://cms-events.e-anandraj.workers.dev" }}";
+    var form   = document.getElementById('regForm');
+    var msg    = document.getElementById('reg-message');
+    var btn    = document.getElementById('regSubmit');
+    if (!form) return;
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'Submitting…';
+      msg.style.display = 'none';
+      var payload = {
+        event_slug:   document.getElementById('reg-slug').value,
+        event_title:  document.getElementById('reg-title').value,
+        name:         document.getElementById('reg-name').value.trim(),
+        email:        document.getElementById('reg-email').value.trim(),
+        phone:        document.getElementById('reg-phone').value.trim(),
+        participants: parseInt(document.getElementById('reg-participants').value) || 1,
+        notes:        document.getElementById('reg-notes').value.trim(),
+      };
+      try {
+        var res  = await fetch(WORKER + '/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        var data = await res.json();
+        if (res.ok) {
+          msg.className = 'event-register-msg event-register-msg--ok';
+          msg.textContent = data.message || 'Registration received!';
+          form.style.display = 'none';
+        } else {
+          msg.className = 'event-register-msg event-register-msg--err';
+          msg.textContent = data.error || 'Something went wrong. Please try again.';
+          btn.disabled = false;
+          btn.textContent = 'Submit Registration';
+        }
+      } catch {
+        msg.className = 'event-register-msg event-register-msg--err';
+        msg.textContent = 'Network error. Please check your connection and try again.';
+        btn.disabled = false;
+        btn.textContent = 'Submit Registration';
+      }
+      msg.style.display = '';
+    });
+  })();
+  </script>
+  {{ end }}
 
   {{/* ── Footer ──────────────────────────────────────────────────────────── */}}
   {{ if $s.events_show_prev_next }}
