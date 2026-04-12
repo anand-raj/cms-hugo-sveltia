@@ -31,19 +31,20 @@ events_show_prev_next:   false
 events_worker_url:       "https://cms-events.e-anandraj.workers.dev"
 
 # ── Fonts (Google Fonts family names) ─────────────────────────────────────────
-body_font: "Inter"
-heading_font: "Inter"
+body_font: "Lora"
+heading_font: "Playfair Display"
 
 # ── Colours ───────────────────────────────────────────────────────────────────
 color_primary: "#1a3a4a"
 color_accent:  "#c0392b"
 color_text:    "#1a2a35"
-color_bg:      "#f8fcff"
-color_surface: "#eef7fd"
-color_border:  "#d0eaf6"
+color_bg:      "#fff8f8"
+color_surface: "#fdf0f0"
+color_border:  "#f0d0d0"
 color_muted:   "#3a6a80"
 color_subtle:  "#c98888"
-color_pre_bg:  "#0d2030"
+color_pre_bg:  "#1a0808"
+color_nav_bg:  "#7a1a1a"
 
 # ── Saved Themes ──────────────────────────────────────────────────────────────
 
