@@ -2,6 +2,9 @@ baseURL = 'https://anand-raj.github.io/cms-hugo-sveltia/'
 languageCode = 'en-us'
 title = 'My New Hugo Project'
 
+[markup.goldmark.renderer]
+  unsafe = true   # allows <style> and other raw HTML inside Markdown
+
 [outputs]
   home = ["HTML", "RSS", "JSON"]
 

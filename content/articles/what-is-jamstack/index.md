@@ -2,7 +2,7 @@
 title: "What is JAMstack? The Architecture Behind Modern Web Development"
 date: 2026-04-06T19:17:24+05:30
 lastmod: 2026-04-06T19:17:24+05:30
-draft: false
+draft: true
 description: "JAMstack is a modern web architecture built on JavaScript, APIs, and Markup. Learn how it works, why it's faster and more secure than traditional stacks, and how Hugo fits into the picture."
 author: "Admin"
 

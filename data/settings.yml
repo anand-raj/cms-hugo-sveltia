@@ -48,6 +48,8 @@ color_pre_bg:  "#0d2030"
 # ── Saved Themes ──────────────────────────────────────────────────────────────
 
 # Theme 8 — Arctic Frost + Editorial Red
+# body_font:     "Inter"
+# heading_font:  "Inter"
 # color_primary: "#1a3a4a"
 # color_accent:  "#c0392b"
 # color_text:    "#1a2a35"

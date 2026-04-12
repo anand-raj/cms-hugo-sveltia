@@ -2,7 +2,7 @@
 title: Getting Started with Sveltia CMS
 date: 2026-04-07T00:00:00+05:30
 lastmod: 2026-04-07T00:00:00+05:30
-draft: false
+draft: true
 description: Sveltia CMS is a modern, Git-based headless CMS built for Jamstack sites. Learn what it is, how it compares to Netlify/Decap CMS, and how to connect it to your Hugo site in minutes.
 author: Admin
 categories:

@@ -2,7 +2,7 @@
 title: "Karnataka Handloom Cluster Gets ₹48 Crore Boost Under National Scheme"
 date: 2026-04-05T09:30:00+05:30
 lastmod: 2026-04-05T09:30:00+05:30
-draft: false
+draft: true
 description: "The Union Ministry of Textiles has approved ₹48 crore for Karnataka's handloom clusters under the National Handloom Development Programme, targeting weavers in Ilkal, Dharwad, and Molakalmuru."
 author: "Staff Reporter"
 categories:

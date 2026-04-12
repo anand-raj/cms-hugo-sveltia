@@ -2,7 +2,7 @@
 title: "Bengaluru Traffic: City Records 94-Minute Average Commute in 2026 Survey"
 date: 2026-04-06T10:00:00+05:30
 lastmod: 2026-04-06T10:00:00+05:30
-draft: false
+draft: true
 description: "A new urban mobility survey places Bengaluru among the top five most congested cities in Asia, with the average one-way commute now exceeding 94 minutes."
 author: "Staff Reporter"
 categories:

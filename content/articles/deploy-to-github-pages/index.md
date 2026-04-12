@@ -2,7 +2,7 @@
 title: "How to Deploy a Hugo Site to GitHub Pages"
 date: 2026-04-06T20:03:22+05:30
 lastmod: 2026-04-06T20:03:22+05:30
-draft: false
+draft: true
 description: "GitHub Pages offers free, reliable static site hosting directly from a repository. Learn how to deploy your Hugo site automatically using GitHub Actions in just a few steps."
 author: "Admin"
 

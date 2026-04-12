@@ -2,7 +2,7 @@
 title: "Roads Less Travelled: A Travelogue Across Karnataka"
 date: 2026-04-09T10:00:00+05:30
 lastmod: 2026-04-09T10:00:00+05:30
-draft: false
+draft: true
 description: "A ground-level journey through Karnataka's towns and villages — exploring livelihoods, landscapes, and the quiet resilience of everyday people."
 author: "Admin"
 categories:
