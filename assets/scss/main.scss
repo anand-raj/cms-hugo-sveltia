@@ -141,7 +141,7 @@ main {
 
 // ─── Header ───────────────────────────────────────────────────────────────────
 .site-header {
-  background: var(--color-nav-bg, #{$primary-color});
+  background: $primary-color;
   color: #fff;
   padding: 1rem 1.5rem;
   position: sticky;

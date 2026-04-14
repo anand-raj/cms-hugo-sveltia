@@ -16,7 +16,6 @@
 {{ $bodyFont    := default "Inter" $s.body_font }}
 {{ $headingFont := default "Inter" $s.heading_font }}
 {{ $primary     := default "#1a1a2e" $s.color_primary }}
-{{ $navBg       := default $primary $s.color_nav_bg }}
 {{ $accent      := default "#e94560" $s.color_accent }}
 {{ $textColor   := default "#333333" $s.color_text }}
 {{ $bg          := default "#ffffff" $s.color_bg }}
@@ -39,7 +38,6 @@
   --font-body:     '{{ $bodyFont }}', system-ui, sans-serif;
   --font-heading:  '{{ $headingFont }}', system-ui, sans-serif;
   --color-primary: {{ $primary }};
-  --color-nav-bg:  {{ $navBg }};
   --color-accent:  {{ $accent }};
   --color-text:    {{ $textColor }};
   --color-bg:      {{ $bg }};
