@@ -2,7 +2,7 @@
 title: 'Getting Started with Hugo: A Static Site Generator'
 date: 2026-04-06T18:57:00+05:30
 lastmod: 2026-04-06T18:57:00+05:30
-draft: true
+draft: false
 description: Hugo is one of the fastest static site generators in the world. Learn what it is, why it matters, and how to get your first site running in minutes.
 author: Admin
 categories:

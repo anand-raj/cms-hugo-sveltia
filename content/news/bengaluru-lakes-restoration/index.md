@@ -2,7 +2,7 @@
 title: "Bengaluru's Lake Restoration Programme Revives 14 Water Bodies in Three Years"
 date: 2026-03-31T09:00:00+05:30
 lastmod: 2026-03-31T09:00:00+05:30
-draft: true
+draft: false
 description: "A civic-government partnership has successfully restored 14 of Bengaluru's historically significant lakes over three years, reversing decades of encroachment, sewage inflow, and neglect."
 author: "Staff Reporter"
 categories:

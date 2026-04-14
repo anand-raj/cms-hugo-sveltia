@@ -2,7 +2,7 @@
 title: "Raichur's 500 MW Solar Farm Begins Commercial Operation"
 date: 2026-04-03T09:00:00+05:30
 lastmod: 2026-04-03T09:00:00+05:30
-draft: true
+draft: false
 description: "One of Karnataka's largest solar installations, spread across 2,100 acres in Raichur district, has begun supplying power to the state grid — a milestone for northern Karnataka's energy transition."
 author: "Staff Reporter"
 categories:

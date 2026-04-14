@@ -2,7 +2,7 @@
 title: "Coorg Coffee Growers Brace for Third Consecutive Below-Average Yield"
 date: 2026-04-05T08:00:00+05:30
 lastmod: 2026-04-05T08:00:00+05:30
-draft: true
+draft: false
 description: "Unseasonal rains during flowering season and a prolonged dry spell in February have combined to push Coorg's coffee yield estimates to their lowest in a decade."
 author: "Staff Reporter"
 categories:

@@ -2,7 +2,7 @@
 title: "Kodagu Flood Relief: Two Years On, 1,200 Families Still in Transit Camps"
 date: 2026-04-01T09:00:00+05:30
 lastmod: 2026-04-01T09:00:00+05:30
-draft: true
+draft: false
 description: "Nearly two years after the 2024 Kodagu floods displaced over 18,000 people, more than 1,200 families remain in temporary relief camps, waiting for permanent housing promised by the state government."
 author: "Staff Reporter"
 categories:

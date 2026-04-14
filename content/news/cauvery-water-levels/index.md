@@ -2,7 +2,7 @@
 title: "Cauvery Reservoir Levels at 62% as Summer Sets In"
 date: 2026-04-07T08:00:00+05:30
 lastmod: 2026-04-07T08:00:00+05:30
-draft: true
+draft: false
 description: "Water levels at Karnataka's four major Cauvery reservoirs stand at 62% of total capacity as of early April, raising concerns about drinking water supply for Bengaluru and irrigation for Mandya farmers through the summer."
 author: "Staff Reporter"
 categories:

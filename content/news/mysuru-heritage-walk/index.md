@@ -2,7 +2,7 @@
 title: "Mysuru Heritage Walk Project Maps 140 Colonial-Era Buildings"
 date: 2026-04-04T10:00:00+05:30
 lastmod: 2026-04-04T10:00:00+05:30
-draft: true
+draft: false
 description: "A two-year documentation project by the Mysuru City Corporation and heritage volunteers has mapped 140 colonial-era and Wadiyar-period buildings, many at risk from commercial development."
 author: "Staff Reporter"
 categories:

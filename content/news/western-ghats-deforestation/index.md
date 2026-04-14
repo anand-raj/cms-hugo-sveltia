@@ -2,7 +2,7 @@
 title: "Western Ghats: 4,200 Hectares Lost to Mining and Encroachment in Five Years"
 date: 2026-04-08T09:00:00+05:30
 lastmod: 2026-04-08T09:00:00+05:30
-draft: true
+draft: false
 description: "A new report by the Karnataka Forest Department reveals significant forest cover loss in the Western Ghats over the past five years, driven by illegal mining, plantation expansion, and encroachment."
 author: "Staff Reporter"
 categories:

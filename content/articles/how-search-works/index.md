@@ -2,7 +2,7 @@
 title: "How Search Works on This Site"
 date: 2026-04-09T14:00:00+05:30
 lastmod: 2026-04-09T14:00:00+05:30
-draft: true
+draft: false
 description: "A look under the hood at how the site's client-side search is built — using Hugo's JSON output, Fuse.js fuzzy matching, and zero backend infrastructure."
 author: "Admin"
 categories:

@@ -2,7 +2,7 @@
 title: "Mangaluru Fishing Communities Seek Extension of Trawling Ban Review"
 date: 2026-04-02T09:00:00+05:30
 lastmod: 2026-04-02T09:00:00+05:30
-draft: true
+draft: false
 description: "Traditional fishing communities along the Karnataka coast have urged the state government to extend the annual trawling moratorium from 61 to 90 days, citing alarming declines in fish populations."
 author: "Staff Reporter"
 categories:
