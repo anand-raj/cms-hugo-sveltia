@@ -23,7 +23,7 @@
         return;
       }
       grid.innerHTML = books.map(function (b) {
-        const bookUrl  = BASE_URL + 'books/' + b.slug + '/';
+        const bookUrl  = BASE_URL + 'books/detail/?slug=' + b.slug;
         const priceINR = '₹' + (b.price_paise / 100).toLocaleString('en-IN');
         const stockBadge = b.in_stock
           ? '<span class="book-stock book-stock--in">In Stock</span>'

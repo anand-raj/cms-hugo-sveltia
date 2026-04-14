@@ -105,9 +105,8 @@
       const WORKER  = '{{ $workerUrl | safeJS }}';
       const RZP_KEY = '{{ $razorpayKey | safeJS }}';
 
-      // Extract slug from URL: /books/my-slug/ → my-slug
-      const pathParts = window.location.pathname.replace(/\/+$/, '').split('/');
-      const SLUG = pathParts[pathParts.length - 1];
+      // Extract slug from query string: /books/detail/?slug=my-book
+      const SLUG = new URLSearchParams(window.location.search).get('slug') || '';
 
       // ── Populate book data from API ──────────────────────────────────────
       let bookPriceStr = '';
@@ -132,6 +131,11 @@
             img.decoding = 'async';
             coverEl.replaceChild(img, placeholder);
           }
+
+          // Update page title
+          document.title = book.title + ' — ' + document.title;
+          const h1 = document.querySelector('.book-title');
+          if (h1) h1.textContent = book.title;
 
           // Author
           if (book.author) {
