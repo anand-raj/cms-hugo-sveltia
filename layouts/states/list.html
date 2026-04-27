@@ -20,8 +20,13 @@
 
 <div class="content-wrap content-wrap--wide">
 
-{{/* ── Only show content the main-site admin has approved via "state-chapter" tag ── */}}
-{{ $approved := where .Pages ".Params.tags" "intersect" (slice "state-chapter") }}
+{{/* ── Only show content approved in data/approved.yml ───────────────────── */}}
+{{ $approved := slice }}
+{{ range .Pages }}
+  {{ if partial "is-approved.html" . }}
+    {{ $approved = $approved | append . }}
+  {{ end }}
+{{ end }}
 
 {{ $articles := where $approved "Section" "articles" }}
 {{ $news     := where $approved "Section" "news" }}

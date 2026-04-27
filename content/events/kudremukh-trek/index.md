@@ -18,7 +18,6 @@ tags:
   - western-ghats
   - kudremukh
   - camping
-  - state-chapter
 states:
   - karnataka
 ---

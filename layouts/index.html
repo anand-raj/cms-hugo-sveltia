@@ -1,14 +1,10 @@
 {{ define "main" }}
 {{ $s := site.Data.settings }}
 
-{{/* ── Filter helper: exclude unapproved state content ────────────────────── */}}
-{{/* State content (has 'states' param) is only shown if it also has the      */}}
-{{/* 'state-chapter' tag, which the main-site admin adds to approve it.        */}}
+{{/* ── Filter helper: only show state content approved in data/approved.yml ────── */}}
 {{ $approvedPages := slice }}
 {{ range site.RegularPages }}
-  {{ $isState    := or .Params.states .Params.section }}
-  {{ $isApproved := gt (len (intersect .Params.tags (slice "state-chapter"))) 0 }}
-  {{ if or (not $isState) $isApproved }}
+  {{ if partial "is-approved.html" . }}
     {{ $approvedPages = $approvedPages | append . }}
   {{ end }}
 {{ end }}

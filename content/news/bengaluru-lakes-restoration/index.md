@@ -12,7 +12,6 @@ tags:
   - bengaluru
   - environment
   - urban
-  - state-chapter
 toc: false
 comments: true
 image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&fm=webp&q=80"

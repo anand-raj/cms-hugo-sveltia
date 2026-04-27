@@ -12,7 +12,6 @@ tags:
   - cauvery
   - karnataka
   - agriculture
-  - state-chapter
 toc: false
 comments: true
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&fm=webp&q=80"

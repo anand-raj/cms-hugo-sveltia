@@ -1,0 +1,39 @@
+{{/*
+  Partial: is-approved.html
+  Returns true if the page should be shown on the main site.
+
+  Rules:
+  - Non-state content (no 'states' or 'section' param): always shown.
+  - State content: only shown if its slug appears in data/approved.yml
+    under the matching state and section.
+
+  Usage: {{ if partial "is-approved.html" . }} ... {{ end }}
+*/}}
+
+{{ $page := . }}
+{{ $isState := or $page.Params.states $page.Params.section }}
+
+{{ if not $isState }}
+  {{/* Not state content — always show */}}
+  true
+{{ else }}
+  {{/* Resolve state slug: prefer 'states' list, fall back to 'section' param */}}
+  {{ $stateSlug := "" }}
+  {{ with $page.Params.states }}
+    {{ $stateSlug = index . 0 | urlize }}
+  {{ else }}
+    {{ $stateSlug = $page.Params.section | urlize }}
+  {{ end }}
+
+  {{ $section := $page.Section }}
+  {{ $slug    := $page.File.Dir | path.Base }}
+
+  {{ $approved    := site.Data.approved }}
+  {{ $stateData   := index $approved $stateSlug }}
+  {{ $sectionList := slice }}
+  {{ with $stateData }}
+    {{ $sectionList = index . $section | default slice }}
+  {{ end }}
+
+  {{ if in $sectionList $slug }}true{{ end }}
+{{ end }}
