@@ -1,5 +1,13 @@
 {{ define "main" }}
 
+{{/* ── Filter: exclude state content that hasn't been approved with state-chapter tag ── */}}
+{{ $pages := slice }}
+{{ range .Pages }}
+  {{ if or (not .Params.states) (intersect .Params.tags (slice "state-chapter")) }}
+    {{ $pages = $pages | append . }}
+  {{ end }}
+{{ end }}
+
 <div class="list-hero">
   <div class="list-hero-inner">
     <h1 class="list-hero-title">{{ .Title }}</h1>
@@ -8,10 +16,10 @@
 </div>
 
 <div class="content-wrap content-wrap--wide">
-  {{ if .Pages }}
+  {{ if $pages }}
 
   {{/* ── Featured (first) article ─────────────────────────────────────────── */}}
-  {{ $featured := index .Pages 0 }}
+  {{ $featured := index $pages 0 }}
   <div class="list-featured" data-cats="{{ range $featured.GetTerms "categories" }}{{ .LinkTitle | urlize }} {{ end }}">
     {{ with $featured.Params.image }}
     <a class="list-featured-img" href="{{ $featured.RelPermalink }}">
@@ -36,7 +44,7 @@
   </div>
 
   {{/* ── Article grid ─────────────────────────────────────────────────────── */}}
-  {{ $rest := after 1 .Pages }}
+  {{ $rest := after 1 $pages }}
   {{ if $rest }}
   <div class="list-grid" id="listGrid">
     {{ range $rest }}

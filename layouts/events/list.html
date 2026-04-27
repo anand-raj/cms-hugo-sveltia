@@ -1,5 +1,13 @@
 {{ define "main" }}
 
+{{/* ── Filter: exclude state content that hasn't been approved with state-chapter tag ── */}}
+{{ $pages := slice }}
+{{ range .Pages }}
+  {{ if or (not .Params.states) (intersect .Params.tags (slice "state-chapter")) }}
+    {{ $pages = $pages | append . }}
+  {{ end }}
+{{ end }}
+
 <div class="list-hero">
   <div class="list-hero-inner">
     <h1 class="list-hero-title">{{ .Title }}</h1>
@@ -8,14 +16,14 @@
 </div>
 
 <div class="content-wrap content-wrap--wide">
-  {{ if .Pages }}
+  {{ if $pages }}
 
   {{ $now := now }}
 
   {{/* ── Split into upcoming / past ─────────────────────────────────────── */}}
   {{ $upcoming := slice }}
   {{ $past     := slice }}
-  {{ range .Pages }}
+  {{ range $pages }}
     {{ $evDate := .Date }}
     {{ with .Params.event_date }}
       {{ $evDate = (time .) }}

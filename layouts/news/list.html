@@ -1,5 +1,13 @@
 {{ define "main" }}
 
+{{/* ── Filter: exclude state content that hasn't been approved with state-chapter tag ── */}}
+{{ $pages := slice }}
+{{ range .Pages }}
+  {{ if or (not .Params.states) (intersect .Params.tags (slice "state-chapter")) }}
+    {{ $pages = $pages | append . }}
+  {{ end }}
+{{ end }}
+
 <div class="list-hero">
   <div class="list-hero-inner">
     <h1 class="list-hero-title">{{ .Title }}</h1>
@@ -8,10 +16,10 @@
 </div>
 
 <div class="content-wrap content-wrap--wide">
-  {{ if .Pages }}
+  {{ if $pages }}
 
   {{/* ── Lead story ──────────────────────────────────────────────────────── */}}
-  {{ $lead := index .Pages 0 }}
+  {{ $lead := index $pages 0 }}
   <div class="news-lead">
     {{ with $lead.Params.image }}
     <a class="news-lead-img" href="{{ $lead.RelPermalink }}">
@@ -31,7 +39,7 @@
   </div>
 
   {{/* ── News list ────────────────────────────────────────────────────────── */}}
-  {{ $rest := after 1 .Pages }}
+  {{ $rest := after 1 $pages }}
   {{ if $rest }}
   <div class="news-list">
     {{ range $rest }}
