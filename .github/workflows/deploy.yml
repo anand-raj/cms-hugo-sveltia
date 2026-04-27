@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  # Triggered by state content repos when editors publish content
+  repository_dispatch:
+    types: [state-content-updated]
 
 permissions:
   contents: read
@@ -22,6 +25,21 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+
+      - name: Fetch state content — Karnataka
+        run: |
+          git clone --depth=1 https://github.com/anand-raj/cms-content-karnataka.git /tmp/karnataka
+          [ -d /tmp/karnataka/content/articles ] && cp -r /tmp/karnataka/content/articles/. content/articles/ || true
+          [ -d /tmp/karnataka/content/events ]   && cp -r /tmp/karnataka/content/events/.   content/events/   || true
+          [ -d /tmp/karnataka/content/news ]     && cp -r /tmp/karnataka/content/news/.     content/news/     || true
+
+      # Add more states here following the same pattern, e.g.:
+      # - name: Fetch state content — Tamil Nadu
+      #   run: |
+      #     git clone --depth=1 https://github.com/anand-raj/cms-content-tamilnadu.git /tmp/tamilnadu
+      #     [ -d /tmp/tamilnadu/content/articles ] && cp -r /tmp/tamilnadu/content/articles/. content/articles/ || true
+      #     [ -d /tmp/tamilnadu/content/events ]   && cp -r /tmp/tamilnadu/content/events/.   content/events/   || true
+      #     [ -d /tmp/tamilnadu/content/news ]     && cp -r /tmp/tamilnadu/content/news/.     content/news/     || true
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
@@ -51,3 +69,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
