@@ -1,9 +1,13 @@
 {{ define "main" }}
 
-{{/* ── Filter: exclude state content that hasn't been approved with state-chapter tag ── */}}
+{{/* ── Filter: exclude unapproved state content ────────────────────────────────── */}}
+{{/* State content is identified by a 'states' or 'section' custom param.   */}}
+{{/* It only appears when the admin adds the 'state-chapter' tag.             */}}
 {{ $pages := slice }}
 {{ range .Pages }}
-  {{ if or (not .Params.states) (gt (len (intersect .Params.tags (slice "state-chapter"))) 0) }}
+  {{ $isState    := or .Params.states .Params.section }}
+  {{ $isApproved := gt (len (intersect .Params.tags (slice "state-chapter"))) 0 }}
+  {{ if or (not $isState) $isApproved }}
     {{ $pages = $pages | append . }}
   {{ end }}
 {{ end }}

@@ -6,7 +6,9 @@
 {{/* 'state-chapter' tag, which the main-site admin adds to approve it.        */}}
 {{ $approvedPages := slice }}
 {{ range site.RegularPages }}
-  {{ if or (not .Params.states) (gt (len (intersect .Params.tags (slice "state-chapter"))) 0) }}
+  {{ $isState    := or .Params.states .Params.section }}
+  {{ $isApproved := gt (len (intersect .Params.tags (slice "state-chapter"))) 0 }}
+  {{ if or (not $isState) $isApproved }}
     {{ $approvedPages = $approvedPages | append . }}
   {{ end }}
 {{ end }}
