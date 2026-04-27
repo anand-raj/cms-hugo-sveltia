@@ -1,11 +1,10 @@
 {{/*
   Partial: is-approved.html
-  Outputs the string "true" (truthy) if the page should be shown on the main site.
-  Outputs nothing/empty (falsy) if it should be hidden.
+  Outputs "true" if a page should appear on global pages (homepage, /articles/,
+  /news/, /events/). Non-state content always passes. State content only passes
+  if its slug is listed in data/approved.yml under <state> → <section>.
 
-  Rules:
-  - Non-state content (no 'states' or 'section' param): always shown.
-  - State content: only shown if its slug appears in data/approved.yml.
+  The state chapter page (/states/<slug>/) bypasses this and shows all state content.
 
   Usage: {{ if partial "is-approved.html" . }} ... {{ end }}
 */}}

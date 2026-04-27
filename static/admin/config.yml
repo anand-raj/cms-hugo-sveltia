@@ -220,7 +220,7 @@ collections:
 
   - name: approvals
     label: "State Chapter Approvals"
-    description: "Control which state chapter content appears on the main site. Only slugs listed here will be published. State editors cannot edit this file."
+    description: "Control which state chapter content appears on the global homepage and articles/news/events pages. State chapter pages always show all state content."
     files:
       - name: approved
         label: Approved Content
@@ -229,31 +229,23 @@ collections:
           - label: Karnataka
             name: karnataka
             widget: object
+            hint: "Slugs listed here appear on the Karnataka chapter page AND on the global homepage/articles/news/events pages."
             fields:
-              - label: Approved Articles
+              - label: Articles
                 name: articles
                 widget: list
-                field:
-                  label: Article Slug
-                  name: slug
-                  widget: string
-                hint: "Enter the slug (folder name) of each approved Karnataka article."
-              - label: Approved News
+                field: { label: Article Slug, name: slug, widget: string }
+                hint: "Slug = folder name under content/articles/"
+              - label: News
                 name: news
                 widget: list
-                field:
-                  label: News Slug
-                  name: slug
-                  widget: string
-                hint: "Enter the slug (folder name) of each approved Karnataka news item."
-              - label: Approved Events
+                field: { label: News Slug, name: slug, widget: string }
+                hint: "Slug = folder name under content/news/"
+              - label: Events
                 name: events
                 widget: list
-                field:
-                  label: Event Slug
-                  name: slug
-                  widget: string
-                hint: "Enter the slug (folder name) of each approved Karnataka event."
+                field: { label: Event Slug, name: slug, widget: string }
+                hint: "Slug = folder name under content/events/"
 
   - name: settings
     label: Site Settings

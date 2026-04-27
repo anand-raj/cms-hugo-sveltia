@@ -1,17 +1,10 @@
 # Approved state chapter content
 # Only the main site admin can edit this file.
-# State editors cannot approve their own content — add slugs here to publish
-# state content on the main site (homepage, articles/news/events pages, and
-# the /states/<slug>/ chapter page).
 #
-# Format:
-#   <state-slug>:
-#     articles:
-#       - <content-slug>
-#     news:
-#       - <content-slug>
-#     events:
-#       - <content-slug>
+# Slugs listed here appear on the state chapter page AND on the global
+# homepage / articles / news / events pages.
+# State content NOT listed here is hidden everywhere on the main site.
+# The state chapter page (/states/<slug>/) shows ALL state content regardless.
 
 karnataka:
   articles: []

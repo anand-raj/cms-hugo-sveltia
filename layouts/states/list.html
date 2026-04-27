@@ -20,14 +20,8 @@
 
 <div class="content-wrap content-wrap--wide">
 
-{{/* ── Only show content approved in data/approved.yml ───────────────────── */}}
-{{ $approved := slice }}
-{{ range .Pages }}
-  {{ if partial "is-approved.html" . }}
-    {{ $approved = $approved | append . }}
-  {{ end }}
-{{ end }}
-
+{{/* ── Show all content tagged with this state — no approval gate needed ── */}}
+{{ $approved := .Pages }}
 {{ $articles := where $approved "Section" "articles" }}
 {{ $news     := where $approved "Section" "news" }}
 {{ $events   := where $approved "Section" "events" }}
