@@ -16,7 +16,7 @@ toc: false
 comments: true
 image: "https://images.unsplash.com/photo-1547683905-f686c993aae5?w=1200&fm=webp&q=80"
 image_caption: "Photo by [Chris Gallagher](https://unsplash.com/@chriswebdog) on [Unsplash](https://unsplash.com)"
-state:
+states:
   - karnataka
 ---
 

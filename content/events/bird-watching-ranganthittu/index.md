@@ -19,7 +19,7 @@ tags:
   - ranganathittu
   - karnataka
   - state-chapter
-state:
+states:
   - karnataka
 ---
 

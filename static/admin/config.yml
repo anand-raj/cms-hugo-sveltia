@@ -61,7 +61,7 @@ collections:
         hint: "Add 'state-chapter' to publish this article in the State Chapters section."
 
       - label: State Chapter
-        name: state
+        name: states
         widget: select
         multiple: true
         required: false
@@ -133,7 +133,7 @@ collections:
         required: false
         hint: "Add 'state-chapter' to publish this news item in the State Chapters section."
       - label: State Chapter
-        name: state
+        name: states
         widget: select
         multiple: true
         required: false
@@ -203,7 +203,7 @@ collections:
         required: false
         hint: "Add 'state-chapter' to publish this event in the State Chapters section."
       - label: State Chapter
-        name: state
+        name: states
         widget: select
         multiple: true
         required: false

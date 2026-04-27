@@ -19,7 +19,7 @@ tags:
   - kudremukh
   - camping
   - state-chapter
-state:
+states:
   - karnataka
 ---
 

@@ -17,7 +17,7 @@ toc: false
 comments: true
 image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&fm=webp&q=80"
 image_caption: "Photo by [Cody Hiscox](https://unsplash.com/@codyhiscox) on [Unsplash](https://unsplash.com)"
-state:
+states:
   - karnataka
 ---
 

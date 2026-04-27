@@ -16,7 +16,7 @@ toc: false
 comments: true
 image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&fm=webp&q=80"
 image_caption: "Photo by [American Public Power Association](https://unsplash.com/@publicpowerorg) on [Unsplash](https://unsplash.com)"
-state:
+states:
   - karnataka
 ---
 

@@ -16,7 +16,7 @@ toc: false
 comments: true
 image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=1200&fm=webp&q=80"
 image_caption: "Photo by [Srikar Prasad](https://unsplash.com/@srikar) on [Unsplash](https://unsplash.com)"
-state:
+states:
   - karnataka
 ---
 

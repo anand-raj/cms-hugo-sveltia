@@ -18,7 +18,7 @@ tags:
   - night-sky
   - nandi-hills
   - outdoor
-state:
+states:
   - karnataka
 ---
 

@@ -108,7 +108,7 @@
           <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
           {{ with .Params.event_date }}
           <div class="event-meta-inline">
-            <time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Monday, January 2, 2006" }}</time>
+            <time datetime="{{ dateFormat "2006-01-02" . }}">{{ dateFormat "Monday, January 2, 2006" . }}</time>
             {{ with $p.Params.event_location }} · <span>{{ . }}</span>{{ end }}
           </div>
           {{ end }}

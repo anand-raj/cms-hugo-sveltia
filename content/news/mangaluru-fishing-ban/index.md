@@ -16,7 +16,7 @@ toc: false
 comments: true
 image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&fm=webp&q=80"
 image_caption: "Photo by [Steffen Wienberg](https://unsplash.com/@steffenwienberg) on [Unsplash](https://unsplash.com)"
-state:
+states:
   - karnataka
 ---
 
