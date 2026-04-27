@@ -3,7 +3,7 @@
 {{/* ── Filter: exclude state content that hasn't been approved with state-chapter tag ── */}}
 {{ $pages := slice }}
 {{ range .Pages }}
-  {{ if or (not .Params.states) (intersect .Params.tags (slice "state-chapter")) }}
+  {{ if or (not .Params.states) (gt (len (intersect .Params.tags (slice "state-chapter"))) 0) }}
     {{ $pages = $pages | append . }}
   {{ end }}
 {{ end }}

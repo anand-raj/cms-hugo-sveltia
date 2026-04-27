@@ -1,8 +1,19 @@
 {{ define "main" }}
 {{ $s := site.Data.settings }}
-{{ $allNews     := where site.RegularPages "Section" "news" }}
-{{ $allEvents   := where site.RegularPages "Section" "events" }}
-{{ $allArticles := where site.RegularPages "Section" "articles" }}
+
+{{/* ── Filter helper: exclude unapproved state content ────────────────────── */}}
+{{/* State content (has 'states' param) is only shown if it also has the      */}}
+{{/* 'state-chapter' tag, which the main-site admin adds to approve it.        */}}
+{{ $approvedPages := slice }}
+{{ range site.RegularPages }}
+  {{ if or (not .Params.states) (gt (len (intersect .Params.tags (slice "state-chapter"))) 0) }}
+    {{ $approvedPages = $approvedPages | append . }}
+  {{ end }}
+{{ end }}
+
+{{ $allNews     := where $approvedPages "Section" "news" }}
+{{ $allEvents   := where $approvedPages "Section" "events" }}
+{{ $allArticles := where $approvedPages "Section" "articles" }}
 
 {{/* ── Hero Slider: 3 latest news + 3 latest articles ─────────────────────── */}}
 {{ $sliderNews     := first 3 $allNews }}
