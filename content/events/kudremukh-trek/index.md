@@ -18,6 +18,9 @@ tags:
   - western-ghats
   - kudremukh
   - camping
+  - state-chapter
+state:
+  - karnataka
 ---
 
 ## About the Trek

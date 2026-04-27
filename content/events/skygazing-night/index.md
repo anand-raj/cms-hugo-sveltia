@@ -18,6 +18,8 @@ tags:
   - night-sky
   - nandi-hills
   - outdoor
+state:
+  - karnataka
 ---
 
 ## About the Event

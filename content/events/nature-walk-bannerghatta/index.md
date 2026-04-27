@@ -18,6 +18,8 @@ tags:
   - walking
   - ecology
   - bannerghatta
+state:
+  - karnataka
 ---
 
 ## About the Walk

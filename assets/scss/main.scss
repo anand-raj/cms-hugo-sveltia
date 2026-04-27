@@ -208,6 +208,107 @@ main {
     }
   }
 
+  // ── Dropdown (State Chapters) ──
+  .nav-dropdown {
+    position: relative;
+  }
+
+  .nav-dropdown-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: none;
+    border: none;
+    color: #fff;
+    font: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0;
+
+    &:hover,
+    &[aria-expanded="true"] {
+      color: $accent-color;
+    }
+
+    .nav-dropdown-caret {
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    &[aria-expanded="true"] .nav-dropdown-caret {
+      transform: rotate(180deg);
+    }
+  }
+
+  .nav-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 200px;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    list-style: none;
+    margin: 0;
+    padding: 0.35rem 0;
+    z-index: 200;
+
+    &.is-open {
+      display: block;
+    }
+
+    // small triangle pointer
+    &::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 6px solid var(--color-border);
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 6px solid #fff;
+    }
+
+    li a {
+      display: block;
+      padding: 0.55rem 1rem;
+      color: var(--color-text, #333);
+      font-size: 0.9rem;
+      text-decoration: none;
+      white-space: nowrap;
+
+      &:hover {
+        background: var(--color-surface);
+        color: $accent-color;
+      }
+    }
+
+    .nav-dropdown-divider {
+      height: 1px;
+      background: var(--color-border);
+      margin: 0.35rem 0;
+      pointer-events: none;
+    }
+
+    .nav-dropdown-all a {
+      color: $accent-color;
+      font-weight: 600;
+    }
+  }
+
   // ── Mobile styles ──
   @media (max-width: 768px) {
     .nav-toggle {
@@ -239,6 +340,137 @@ main {
         display: flex;
       }
     }
+
+    // Mobile: dropdown expands inline rather than floating
+    .nav-dropdown-btn {
+      width: 100%;
+      justify-content: space-between;
+      padding: 0.65rem 0.25rem;
+    }
+
+    .nav-dropdown-menu {
+      position: static;
+      transform: none;
+      box-shadow: none;
+      border: none;
+      border-radius: 0;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0;
+      min-width: 0;
+
+      &::before,
+      &::after { display: none; }
+
+      li a {
+        color: rgba(255, 255, 255, 0.85);
+        padding: 0.5rem 1rem;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+          color: #fff;
+        }
+      }
+
+      .nav-dropdown-divider {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .nav-dropdown-all a {
+        color: $accent-color;
+      }
+    }
+  }
+}
+
+// ─── State Chapters ───────────────────────────────────────────────────────────
+.state-chapter-section {
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--color-border);
+
+  &:last-of-type { border-bottom: none; }
+}
+
+.state-chapter-section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  h2 { margin: 0; }
+}
+
+.state-chapter-section-more {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $accent-color;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover { text-decoration: underline; }
+}
+
+.state-chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.state-chapter-type-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.2em 0.6em;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  background: var(--color-surface);
+  color: var(--color-muted);
+
+  &--news  { background: #e8f4fd; color: #1565c0; }
+  &--event { background: #fdf3e8; color: #c06a15; }
+}
+
+.event-meta-inline {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+  margin: 0.25rem 0 0.5rem;
+}
+
+// State chapters index (terms page)
+.state-chapters-index {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.state-chapter-card {
+  display: block;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    border-color: $accent-color;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  }
+
+  h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+    color: $primary-color;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-muted);
   }
 }
 

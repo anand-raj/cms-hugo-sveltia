@@ -12,10 +12,13 @@ tags:
   - cauvery
   - karnataka
   - agriculture
+  - state-chapter
 toc: false
 comments: true
 image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&fm=webp&q=80"
 image_caption: "Photo by [Nathan Anderson](https://unsplash.com/@nathananderson) on [Unsplash](https://unsplash.com)"
+state:
+  - karnataka
 ---
 
 Water levels at the four major Cauvery basin reservoirs — KRS, Kabini, Harangi, and Hemavathi — stand at a combined 62% of total capacity as the summer season begins, according to data from the Karnataka State Natural Disaster Monitoring Centre (KSNDMC).

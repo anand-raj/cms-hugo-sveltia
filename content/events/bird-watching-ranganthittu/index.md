@@ -18,6 +18,9 @@ tags:
   - wildlife
   - ranganathittu
   - karnataka
+  - state-chapter
+state:
+  - karnataka
 ---
 
 ## About the Event

@@ -12,10 +12,13 @@ tags:
   - traffic
   - urban
   - infrastructure
+  - state-chapter
 toc: false
 comments: true
 image: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&fm=webp&q=80"
 image_caption: "Photo by [Rahul Bhosale](https://unsplash.com/@rahulbhosale) on [Unsplash](https://unsplash.com)"
+state:
+  - karnataka
 ---
 
 Bengaluru recorded an average one-way commute time of 94 minutes in the 2026 Urban Mobility Survey conducted by the Indian Institute for Human Settlements (IIHS), placing the city among the five most congested in Asia.

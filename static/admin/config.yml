@@ -58,6 +58,16 @@ collections:
         name: tags
         widget: list
         required: false
+        hint: "Add 'state-chapter' to publish this article in the State Chapters section."
+
+      - label: State Chapter
+        name: state
+        widget: select
+        multiple: true
+        required: false
+        hint: "Select the state this content belongs to (set by state chapter editors)."
+        options:
+          - { label: "Karnataka", value: "karnataka" }
 
       - label: Hero Image
         name: image
@@ -121,6 +131,15 @@ collections:
         name: tags
         widget: list
         required: false
+        hint: "Add 'state-chapter' to publish this news item in the State Chapters section."
+      - label: State Chapter
+        name: state
+        widget: select
+        multiple: true
+        required: false
+        hint: "Select the state this content belongs to."
+        options:
+          - { label: "Karnataka", value: "karnataka" }
       - label: Hero Image
         name: image
         widget: image
@@ -182,6 +201,15 @@ collections:
         name: tags
         widget: list
         required: false
+        hint: "Add 'state-chapter' to publish this event in the State Chapters section."
+      - label: State Chapter
+        name: state
+        widget: select
+        multiple: true
+        required: false
+        hint: "Select the state this content belongs to."
+        options:
+          - { label: "Karnataka", value: "karnataka" }
       - label: Hero Image
         name: image
         widget: image

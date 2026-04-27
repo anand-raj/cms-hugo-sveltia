@@ -12,10 +12,13 @@ tags:
   - bengaluru
   - environment
   - urban
+  - state-chapter
 toc: false
 comments: true
 image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&fm=webp&q=80"
 image_caption: "Photo by [Cody Hiscox](https://unsplash.com/@codyhiscox) on [Unsplash](https://unsplash.com)"
+state:
+  - karnataka
 ---
 
 Fourteen of Bengaluru's historically significant lakes have been restored to functional ecological status over the past three years under a partnership between the Bruhat Bengaluru Mahanagara Palike (BBMP), the Karnataka Lake Conservation and Development Authority (KLCDA), and a consortium of resident welfare associations and environmental NGOs.

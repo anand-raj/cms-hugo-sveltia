@@ -16,6 +16,8 @@ toc: false
 comments: true
 image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200&fm=webp&q=80"
 image_caption: "Photo by [Rodrigo Flores](https://unsplash.com/@rodrigoflores_photo) on [Unsplash](https://unsplash.com)"
+state:
+  - karnataka
 ---
 
 Coffee growers in Kodagu (Coorg) district are staring at a third consecutive below-average harvest, with early estimates from the Coffee Board of India suggesting the 2026 crop could be 18–22% lower than the ten-year average.
