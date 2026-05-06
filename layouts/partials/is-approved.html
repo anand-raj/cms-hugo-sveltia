@@ -21,7 +21,7 @@ true
   {{- end -}}
   {{- $section     := $page.Section -}}
   {{- $slug        := $page.File.Dir | path.Base -}}
-  {{- $stateData   := index site.Data.approved $stateSlug -}}
+  {{- $stateData   := index hugo.Data.approved $stateSlug -}}
   {{- $sectionList := slice -}}
   {{- with $stateData -}}
     {{- $sectionList = index . $section | default slice -}}

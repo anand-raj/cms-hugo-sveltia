@@ -3,7 +3,7 @@
 {{/* ── Resolve the state data entry for this taxonomy term ─────────────────── */}}
 {{ $stateSlug := .Page.Title | urlize }}
 {{ $stateMeta := dict }}
-{{ range site.Data.states }}
+{{ range hugo.Data.states }}
   {{ if eq .slug $stateSlug }}{{ $stateMeta = . }}{{ end }}
 {{ end }}
 

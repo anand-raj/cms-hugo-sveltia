@@ -12,6 +12,7 @@ tags: []
 
 # Visuals
 image: "images/default-hero.jpg"
+images: ["images/default-hero.jpg"]
 image_caption: ""
 
 # Features
