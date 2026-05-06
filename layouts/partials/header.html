@@ -11,7 +11,7 @@
         {{ end }}
       {{ end }}
       {{/* ── State Chapters dropdown ─────────────────────────────────────── */}}
-      {{ if site.Data.states }}
+      {{ if hugo.Data.states }}
       <li class="nav-dropdown">
         <button class="nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">
           State Chapters
@@ -20,7 +20,7 @@
           </svg>
         </button>
         <ul class="nav-dropdown-menu" role="menu">
-          {{ range site.Data.states }}
+          {{ range hugo.Data.states }}
           <li role="none">
             <a href="{{ site.BaseURL }}states/{{ .slug }}/" role="menuitem">{{ .name }}</a>
           </li>
@@ -32,7 +32,6 @@
         </ul>
       </li>
       {{ end }}
-      <li><a class="nav-membership" href="{{ with site.GetPage "/membership" }}{{ .RelPermalink }}{{ end }}">Become a member</a></li>
     </ul>
   </nav>
 </header>

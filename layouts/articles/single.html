@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ $s := site.Data.settings }}
+{{ $s := hugo.Data.settings }}
 {{ $allArticles := where site.RegularPages "Section" "articles" }}
 {{ $related := first 4 (where $allArticles "RelPermalink" "ne" .RelPermalink) }}
 
@@ -74,6 +74,8 @@
           </div>
         {{ end }}
         {{ end }}
+
+        {{ partial "share-buttons.html" . }}
 
         {{ if $s.articles_show_prev_next }}
         <nav class="post-nav" aria-label="Post navigation">

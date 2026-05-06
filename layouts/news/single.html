@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ $s := site.Data.settings }}
+{{ $s := hugo.Data.settings }}
 <div class="content-wrap">
 <article class="post">
 
@@ -67,6 +67,8 @@
 
   {{/* ── Footer ──────────────────────────────────────────────────────────── */}}
   <footer class="post-footer">
+    {{ partial "share-buttons.html" . }}
+
     {{ if $s.news_show_prev_next }}
     <nav class="post-nav" aria-label="Post navigation">
       {{ with .PrevInSection }}
