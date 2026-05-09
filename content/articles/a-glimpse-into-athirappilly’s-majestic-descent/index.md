@@ -35,6 +35,8 @@ The falls are a favorite for filmmakers, having served as the dramatic backdrop 
 
 ### **Visitor Experience**
 
+![](https://pub-ef2e502c5f7c4d6d992c8d7758c43027.r2.dev/2026/05/DSC_3376-01.jpeg)
+
 For the adventurous, a well-maintained (though slippery) path leads down to the foot of the falls. Standing at the base, you are enveloped in a cool, perennial mist as the river continues its journey toward the Arabian Sea.
 
 > **Pro Tip:** If you're driving from Kochi or Coimbatore, keep your windows down. The forest roads are home to elephants and Malabar giant squirrels, making the journey as magical as the destination itself.
