@@ -1,10 +1,10 @@
 ---
-title: "ನಮ್ಮ ವೆಬ್‌ಸೈಟ್ CMS ಪರಿಚಯ"
+title: ನಮ್ಮ ವೆಬ್‌ಸೈಟ್ CMS ಪರಿಚಯ
 date: 2026-04-09T10:00:00+05:30
 lastmod: 2026-04-09T10:00:00+05:30
 draft: false
-description: "ಈ ಲೇಖನದಲ್ಲಿ ನಮ್ಮ ವೆಬ್‌ಸೈಟ್‌ನ CMS ವ್ಯವಸ್ಥೆಯನ್ನು ಕನ್ನಡದಲ್ಲಿ ವಿವರಿಸಲಾಗಿದೆ — Hugo, Sveltia CMS, ಮತ್ತು GitHub Pages ಬಳಸಿ ಹೇಗೆ ಕಾರ್ಯ ನಿರ್ವಹಿಸುತ್ತದೆ ಎಂದು ತಿಳಿಯಿರಿ."
-author: "Admin"
+description: ಈ ಲೇಖನದಲ್ಲಿ ನಮ್ಮ ವೆಬ್‌ಸೈಟ್‌ನ CMS ವ್ಯವಸ್ಥೆಯನ್ನು ಕನ್ನಡದಲ್ಲಿ ವಿವರಿಸಲಾಗಿದೆ — Hugo, Sveltia CMS, ಮತ್ತು GitHub Pages ಬಳಸಿ ಹೇಗೆ ಕಾರ್ಯ ನಿರ್ವಹಿಸುತ್ತದೆ ಎಂದು ತಿಳಿಯಿರಿ.
+author: Admin
 categories:
   - Tech
 tags:
@@ -12,11 +12,11 @@ tags:
   - hugo
   - kannada
   - sveltia
+image: https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&fm=webp&q=80
+image_caption: Photo by [Ilya Pavlov](https://unsplash.com/@ilyapavlov) on [Unsplash](https://unsplash.com)
 toc: true
-image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&fm=webp&q=80"
-image_caption: "Photo by [Ilya Pavlov](https://unsplash.com/@ilyapavlov) on [Unsplash](https://unsplash.com)"
 comments: false
-extra_font: "https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;600;700&display=swap"
+extra_font: https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;600;700&display=swap
 ---
 
 <style>
@@ -51,14 +51,14 @@ extra_font: "https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;600
 ನಮ್ಮ Hugo ತಾಣದ ಪ್ರಮುಖ ಫೋಲ್ಡರ್‌ಗಳು ಹೀಗಿವೆ:
 
 | ಫೋಲ್ಡರ್ | ಉದ್ದೇಶ |
-|---|---|
+| --- | --- |
 | `content/articles/` | ಎಲ್ಲಾ ಲೇಖನಗಳ ಮೂಲ ಫೈಲ್‌ಗಳು |
 | `layouts/` | ಪುಟಗಳ ಟೆಂಪ್ಲೆಟ್‌ಗಳು |
 | `assets/scss/` | ವೆಬ್‌ಸೈಟ್‌ನ ಶೈಲಿ (CSS) |
 | `static/admin/` | CMS ಆಡಳಿತ ಪ್ಯಾನೆಲ್ ಫೈಲ್‌ಗಳು |
 | `hugo.toml` | ತಾಣದ ಮುಖ್ಯ ಸಂರಚನೆ |
 
----
+***
 
 ## Sveltia CMS ಎಂದರೇನು?
 
@@ -80,7 +80,7 @@ extra_font: "https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;600
 - ಲೇಖನ ಪ್ರಕಟಿಸುವುದು ಅಥವಾ ಡ್ರಾಫ್ಟ್ ಆಗಿ ಇಡುವುದು
 - ಚಿತ್ರಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡುವುದು
 
----
+***
 
 ## GitHub Pages ಹೋಸ್ಟಿಂಗ್
 
@@ -88,7 +88,7 @@ extra_font: "https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;600
 
 ### ಪ್ರಕಟೀಕರಣ ಪ್ರಕ್ರಿಯೆ
 
-```
+```plain
 ಲೇಖಕರು CMS ನಲ್ಲಿ ಬರೆಯುತ್ತಾರೆ
         ↓
 GitHub ಗೆ Markdown ಉಳಿಯುತ್ತದೆ
@@ -100,7 +100,9 @@ HTML ಪುಟಗಳು GitHub Pages ನಲ್ಲಿ ಪ್ರಕಟವಾಗು
 
 ಈ ಪ್ರಕ್ರಿಯೆ ಸಂಪೂರ್ಣ ಸ್ವಯಂಚಾಲಿತ — ಒಮ್ಮೆ ಲೇಖನ ಉಳಿಸಿದರೆ ಕೆಲವು ನಿಮಿಷಗಳಲ್ಲಿ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ಕಾಣಿಸಿಕೊಳ್ಳುತ್ತದೆ.
 
----
+***
+
+![](https://picsum.photos/id/532/1920/1280.webp)
 
 ## ಸಾರಾಂಶ
 
